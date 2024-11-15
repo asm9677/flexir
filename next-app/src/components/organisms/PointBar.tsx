@@ -33,6 +33,8 @@ export const PointBar: FC = () => {
 
   const router = useRouter();
   const [selectedToken, setSelectedToken] = useState<number>(0);
+  const [onChanged, setOnChanged] = useState<number>(0);
+
   const [volume, setVolume] = useState<number[]>([]);
   const [volume7, setVolume7] = useState<number>();
   const [contract, setContract] = useState<Contract | null>(null);
@@ -99,8 +101,9 @@ export const PointBar: FC = () => {
   }, [provider]);
 
   useEffect(() => {
+    if(onChanged == 0) return;
     router.push(`/?token=${getTokenName(selectedToken)}`);
-  }, [selectedToken]);
+  }, [onChanged]);
 
   useEffect(() => {
     if (contract === null) return;
@@ -152,13 +155,18 @@ export const PointBar: FC = () => {
                     : tokens.filter((t) => t.id === selectedToken)[0].name}
                 </MenuButton>
                 <MenuList bgColor={"gray.700"} fontSize={"sm"} minWidth="200px">
-                  <MenuItem onClick={() => setSelectedToken(0)}>
+                  <MenuItem onClick={() => {
+                    setSelectedToken(0);setOnChanged(onChanged+1);}
+                  }>
                     All Tokens
                   </MenuItem>
                   {tokens.map((el) => (
                     <MenuItem
                       key={el.id}
-                      onClick={() => setSelectedToken(el.id)}
+                      onClick={() => {
+                        setSelectedToken(el.id);
+                        setOnChanged(onChanged+1);
+                      }}
                     >
                       {el.name}
                     </MenuItem>
