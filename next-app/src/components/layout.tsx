@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import React from "react";
 import { Suspense } from "react";
-import { Providers } from "../providers";
+import { Providers } from "../app/providers";
 import { Box } from "@chakra-ui/react";
 import { AccountProvider } from "@/context/AccountProvider";
 import { Header } from "./organisms/Header";
