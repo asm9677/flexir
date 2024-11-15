@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
+import "./globals.css";
 
 import React from "react";
 import { Suspense } from "react";
-import { Providers } from "../app/providers";
+// import { fonts } from "./fonts";
+import { Providers } from "./providers";
 import { Box } from "@chakra-ui/react";
 import { AccountProvider } from "@/context/AccountProvider";
-import { Header } from "./organisms/Header";
-import { PointBar } from "./organisms/PointBar";
+import { Header } from "@/components/organisms/Header";
+import { PointBar } from "@/components/organisms/PointBar";
 
 export const metadata: Metadata = {
   title: "Flexir",
   description: "Trade First, Stay Ahead",
+  icons: {
+    icon: "/images/Flexir.png",
+  },
 };
 export default function RootLayout({
   children,
