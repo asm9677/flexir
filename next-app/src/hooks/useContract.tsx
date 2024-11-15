@@ -18,8 +18,8 @@ export const useContract = (): {
   );
 
   const tokenContract = new Contract(
-    "0xd66d861fb4df099652c63cf472e6b7de95725bae",
-    contracts.erc20.abi,
+    contracts.token.address,
+    contracts.token.abi,
     provider
   );
 

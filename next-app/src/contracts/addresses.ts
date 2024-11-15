@@ -1,17 +1,17 @@
-// import flexirABI from "./abis/flexirABI.json";
+import flexirABI from "./abis/flexirABI.json";
 import ERC20ABI from "./abis/ERC20ABI.json";
 
 export const contracts = {
-  // flexir: {
-  //   address: "",
-  //   abi: flexirABI,
-  // },
+  flexir: {
+    address: "0x000000000000000000000000000000000000dead",
+    abi: flexirABI,
+  },
   token: {
-    address: "",
+    address: "0x000000000000000000000000000000000000dead",
     abi: ERC20ABI,
   },
   usdt: {
-    address: "",
+    address: "0x000000000000000000000000000000000000dead",
     abi: ERC20ABI,
   },
 };

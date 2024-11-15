@@ -17,14 +17,15 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
+
 const getBlockTimeInterval = (chainId: number) => {
-  switch (chainId) {
-    case 111555111:
-      return 12;
-    default:
-      return 1;
-  }
-};
+    switch(chainId) {
+        case 111555111:
+            return 12;
+        default:
+            return 1;    
+    }
+}
 
 export const PointBar: FC = () => {
   const { provider, chainId } = useAccount();
@@ -55,9 +56,8 @@ export const PointBar: FC = () => {
   const getEventsByDay = async (days: number, blockTimeInterval: number) => {
     const latestBlock = await provider!.getBlock("latest");
     const latestBlockNumber = latestBlock!.number;
-    const fromBlockNumber =
-      latestBlockNumber - (86400 / blockTimeInterval) * days;
-
+    const fromBlockNumber = latestBlockNumber - 86400 / blockTimeInterval * days
+    
     const newOfferEvents = await contract!.queryFilter(
       "NewOffer",
       fromBlockNumber,
@@ -242,3 +242,4 @@ export const PointBar: FC = () => {
     </Flex>
   );
 };
+
