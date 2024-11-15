@@ -2,10 +2,10 @@
 
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "./node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./node_modules/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "./node_modules/@openzeppelin/contracts/access/Ownable.sol";
+import "./ReentrancyGuard.sol";
 
 contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
     using SafeERC20 for IERC20;
@@ -72,7 +72,8 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
 
     struct Order {
         uint256 offerId;
-        uint256 amount; // 계약 체결 금액
+        uint256 amount; // 포인트 amount (point 개수 * WEI6)
+        uint256 value; // Order의 금액
         address seller; // 판매자 지갑 주소
         address buyer; // 구매자 지갑 주소
         OrderStatus status; // OPEN(1), SETTLE_FILLED(2), SETTLE_CANCELLED(3), CANCELLED(4)
@@ -99,53 +100,54 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
     //////////EVENTS//////////
     //////////////////////////
     event NewOffer(
-        uint256 id,
+        uint256 indexed id,
         OfferType offerType,
-        bytes32 tokenId,
+        bytes32 indexed tokenId,
         address exchangeToken,
         uint256 amount,
         uint256 value,
         uint256 collateral,
         bool fullMatch,
-        address doer
+        address indexed doer
     );
 
     event NewToken(bytes32 tokenId, uint256 settleDuration);
 
     event NewOrder(
         uint256 id,
-        uint256 offerId,
+        uint256 indexed offerId,
         uint256 amount,
-        address seller,
-        address buyer
+        uint256 value,
+        address indexed seller,
+        address indexed buyer
     );
 
     event SettleFilled(
-        uint256 orderId,
+        uint256 indexed orderId,
         uint256 value,
         uint256 fee,
-        address doer
+        address indexed doer
     );
 
     event SettleCancelled(
-        uint256 orderId,
+        uint256 indexed orderId,
         uint256 value,
         uint256 fee,
-        address doer
+        address indexed doer
     );
 
-    event CancelOrder(uint256 orderId, address doer);
+    event CancelOrder(uint256 indexed orderId, address indexed doer);
 
     event CancelOffer(
-        uint256 offerId,
+        uint256 indexed offerId,
         uint256 refundValue,
         uint256 refundFee,
-        address doer
+        address indexed doer
     );
 
     event UpdateAcceptedTokens(address[] tokens, bool isAccepted);
 
-    event CloseOffer(uint256 offerId, uint256 refundAmount);
+    event CloseOffer(uint256 indexed offerId, uint256 refundAmount);
 
     event UpdateConfig(
         address oldFeeWallet,
@@ -179,14 +181,14 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
 
     event NewResaleOffer(
         uint256 offerId,
-        uint256 originalOrderId,
+        uint256 indexed originalOrderId,
         uint256 amount,
         uint256 value,
         uint8 reofferStatus,
-        address seller
+        address indexed seller
     );
 
-    event ResaleOfferFilled(uint256 indexed resaleOfferId, address buyer);
+    event ResaleOfferFilled(uint256 indexed resaleOfferId, uint256 amount, uint256 value, address buyer, address seller);
 
 
     //////////////////////////
@@ -416,7 +418,7 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
         iexchangeToken.safeTransferFrom(msg.sender, address(this), _transferAmount);
 
         // internal fillOffer 함수를 통해 Order 생성
-        _fillOffer(offerId, amount, buyer, seller);
+        _fillOffer(offerId, amount, _transferAmount, buyer, seller);
     }
 
     // 재판매 Offer 생성 함수 
@@ -470,7 +472,8 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
         }
 
         resaleOffer.status = OfferStatus.FILLED;
-        emit ResaleOfferFilled(resaleOfferId, msg.sender);
+
+        emit ResaleOfferFilled(resaleOfferId, resaleOffer.amount, resaleOffer.value, msg.sender, resaleOffer.offeredBy);
     }
 
 
@@ -666,7 +669,7 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
         return pointMarket.offers[offerId].offeredBy;
     }
 
-    function offerType(uint256 offerId) external view returns (OfferType) {
+    function offertype(uint256 offerId) external view returns (OfferType) {
         return pointMarket.offers[offerId].offerType;
     }
 
@@ -692,6 +695,10 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
 
     function orderStatus(uint256 orderId) external view returns (OrderStatus) {
         return pointMarket.orders[orderId].status;
+    }
+
+    function getToken(bytes32 tokenId) external view returns (Token memory) {
+        return pointMarket.tokens[tokenId];
     }
 
     ///////////////////////////
@@ -745,6 +752,7 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
     function _fillOffer(
         uint256 offerId,
         uint256 amount,
+        uint256 value,
         address buyer,
         address seller
     ) internal {
@@ -755,6 +763,7 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
         pointMarket.orders[lastOrderId] = Order(
             offerId,
             amount,
+            value,
             seller,
             buyer,
             OrderStatus.OPEN
@@ -767,7 +776,7 @@ contract PointMarket is Ownable(msg.sender),ReentrancyGuard{
             emit CloseOffer(offerId, 0);
         }
 
-        emit NewOrder(lastOrderId, offerId, amount, seller, buyer);
+        emit NewOrder(lastOrderId, offerId, amount, value, seller, buyer);
     }
 
     // 컨트랙트에 머물러 있는 토큰 추출 함수
