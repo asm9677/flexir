@@ -126,7 +126,9 @@ const OfferInfo: FC<OfferInfoProps> = ({
               {offer.offeredBy.slice(-3)}
             </Text>
             <Link
-              href={`https://sepolia.etherscan.io/address/${offer.offeredBy}`}
+              href={`${networks.find((v) => {
+                v.chainId = chainId;
+              })}https://sepolia.etherscan.io/address/${offer.offeredBy}`}
               target="_blank"
             >
               <GoLinkExternal color="white" />
