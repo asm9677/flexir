@@ -75,7 +75,7 @@ const MyOfferCard: FC<OfferProps> = ({ offer, pointMarketContract }) => {
           <Avatar
             boxSize="20px"
             name={`Morph Logo`}
-            src={`/images/Morph.png`}
+            src={`/symbol/Morph.png`}
           />{" "}
           MORPH{" "}
           <Tag colorScheme="cyan" py={1} px={2} fontSize={"xs"}>

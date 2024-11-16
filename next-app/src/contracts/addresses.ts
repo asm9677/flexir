@@ -3,15 +3,15 @@ import ERC20ABI from "./abis/ERC20ABI.json";
 
 export const contracts = {
   flexir: {
-    address: "0x74A4Cc436435005a03c169d1B99c3bb6356Ce13D",
+    address: "0x1EA19E1e231Fee735B919F3E1CB6aFa097CAa4e3",
     abi: flexirABI,
   },
   token: {
-    address: "0x3A683e7A3f8873a0389C5Aa8dDf830ebBe0DF311",
+    address: "0x2E0ee63632E01785c1A4aF0B48cEaeC67bd0d7ec",
     abi: ERC20ABI,
   },
   usdt: {
-    address: "0xAC86cfF21C87262d1F6ca30F54f4eBfe4f573d4F",
+    address: "0x0288aCae2beD47a3185b75113FD9E76344ecb3f3",
     abi: ERC20ABI,
   },
 };

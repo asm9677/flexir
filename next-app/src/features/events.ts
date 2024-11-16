@@ -5,7 +5,7 @@ export const getOfferEvents = async (
   pointMarketContract: Contract,
   signerAddress?: string
 ): Promise<Offer[]> => {
-  const { provider } = useAccount();
+  // const { provider } = useAccount();
   if (!pointMarketContract || !signerAddress) return [];
 
   try {
@@ -33,19 +33,19 @@ export const getOfferEvents = async (
         signerAddress
       );
 
-    const latestBlock = await provider!.getBlock("latest");
-    const latestBlockNumber = latestBlock!.number;
-    const fromBlockNumber = latestBlockNumber - 4500;
+    // const latestBlock = await provider!.getBlock("latest");
+    // const latestBlockNumber = latestBlock!.number;
+    // const fromBlockNumber = latestBlockNumber - 4500;
 
     const newOfferResults = pointMarketContract.queryFilter(
       newOfferEventFilter,
-      fromBlockNumber,
+      13364162,
       "latest"
     );
 
     const newResaleOfferResults = pointMarketContract.queryFilter(
       newResaleOfferEventFilter,
-      fromBlockNumber,
+      13364162,
       "latest"
     );
 
@@ -100,9 +100,9 @@ export const getOrderEvents = async (
   signerAddress?: string
 ): Promise<Order[]> => {
   if (!pointMarketContract || !signerAddress) return [];
-  try {
-    const { provider } = useAccount();
+  // const { provider } = useAccount();
 
+  try {
     // event NewOrder(uint256 id, uint256 indexed offerId, uint256 amount, uint256 value, address indexed seller,address indexed buyer);
     const newOrderEventFilter = pointMarketContract.filters.NewOrder();
 
@@ -110,19 +110,19 @@ export const getOrderEvents = async (
     const resaleOfferFilledFilter =
       pointMarketContract.filters.ResaleOfferFilled();
 
-    const latestBlock = await provider!.getBlock("latest");
-    const latestBlockNumber = latestBlock!.number;
-    const fromBlockNumber = latestBlockNumber - 4500;
+    // const latestBlock = await provider!.getBlock("latest");
+    // const latestBlockNumber = latestBlock!.number;
+    // const fromBlockNumber = latestBlockNumber - 4500;
 
     const newOrderResults = pointMarketContract.queryFilter(
       newOrderEventFilter,
-      fromBlockNumber,
+      13364162,
       "latest"
     );
 
     const resaleOfferFilledResults = pointMarketContract.queryFilter(
       resaleOfferFilledFilter,
-      fromBlockNumber,
+      13364162,
       "latest"
     );
 

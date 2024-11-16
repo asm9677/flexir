@@ -76,7 +76,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
       try {
         setIsActionLoading(true);
 
-        const userBalance = await tokenContract.balanceOf(signer.address);
+        const userBalance = await tokenContract?.balanceOf(signer.address);
         if (userBalance < parseUnits(tokenAmount, 24)) {
           notify("Unsufficient user balance.", false);
           return;
@@ -171,7 +171,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
       try {
         setIsActionLoading(true);
 
-        const userBalance = await usdtContract.balanceOf(signer.address);
+        const userBalance = await usdtContract?.balanceOf(signer.address);
         if (userBalance < offer.value) {
           notify("Unsufficient user balance.", false);
           return;

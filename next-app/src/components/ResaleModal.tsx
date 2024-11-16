@@ -290,7 +290,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                   <Flex gap={4}>
                     <Flex flexDir="column">
                       <Image
-                        src="/images/Morph.png"
+                        src="/symbol/Morph.png"
                         alt="logo"
                         w="60px"
                         h="60px"
@@ -329,7 +329,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                           {Number(orderData.amount) / WEI6}
                         </Text>
                         <Image
-                          src="/images/Morph.png"
+                          src="/symbol/Morph.png"
                           alt="usdt"
                           width="24px"
                           height="24px"
