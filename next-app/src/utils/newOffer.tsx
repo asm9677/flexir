@@ -67,6 +67,9 @@ export const onClickDeposit = async (
 
       notify("Transaction confirmed successfully !", true);
       setTimeout(() => {
+        console.log(txResult.logs)
+        console.log(txResult.logs[1])
+        console.log(iface.parseLog(txResult.logs[1]))
         router.push(
           `/offer/${Number(
             iface.parseLog(txResult.logs[1])?.args[0]

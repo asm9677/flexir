@@ -43,9 +43,7 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
   const fetchOffer = async () => {
     if (signer && flexirContract && offerId) {
       try {
-        const offer = await (
-          flexirContract.connect(signer) as Contract
-        ).getOffer(offerId);
+        const offer = await flexirContract.getOffer(offerId);
         setOffer(offer);
       } catch (error) {
         console.error("Failed to fetch offer: ", error);
@@ -80,14 +78,12 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
             }
           }
         } else {
-          const originalOrder = await (
-            flexirContract.connect(signer) as Contract
-          ).getOrder(offer.originalOrderId);
+          const originalOrder = await flexirContract.getOrder(
+            offer.originalOrderId
+          );
           const originalOfferId = originalOrder.offerId;
 
-          const originalOffer = await (
-            flexirContract.connect(signer) as Contract
-          ).getOffer(originalOfferId);
+          const originalOffer = await flexirContract.getOffer(originalOfferId);
 
           setCollateral(
             String(ethers.formatUnits(originalOffer.collateral * 2n, 6))
@@ -113,9 +109,7 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
         setOrderId(lastOrderId);
 
         if (events.length > 0) {
-          const order = await (
-            flexirContract.connect(signer) as Contract
-          ).getOrder(lastOrderId);
+          const order = await flexirContract.getOrder(lastOrderId);
 
           const orderMap = {
             offerId: order[0],
@@ -136,9 +130,7 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
   const fetchToken = async () => {
     if (offer) {
       try {
-        const token = await (
-          flexirContract.connect(signer) as Contract
-        ).getToken(offer.tokenId);
+        const token = await flexirContract.getToken(offer.tokenId);
         setToken(token);
       } catch (error) {
         console.error("Failed to fetch token: ", error);
@@ -183,9 +175,9 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
             "latest"
           );
         } else {
-          const originalOrder = await (
-            flexirContract.connect(signer) as Contract
-          ).getOrder(offer.originalOrderId);
+          const originalOrder = await flexirContract.getOrder(
+            offer.originalOrderId
+          );
 
           const originalOfferId = originalOrder.offerId;
           const [originalOrderEvents, resaleOfferEvents] = await Promise.all([
