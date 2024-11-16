@@ -24,7 +24,7 @@ export const useContract = (): {
     );
 
     return flexirContract;
-  }, [chainId]);
+  }, [chainId, provider]);
 
   const tokenContract = useMemo(() => {
     const curChain = networks.find((v) => chainId == v.chainId);
@@ -38,7 +38,7 @@ export const useContract = (): {
     );
 
     return tokenContract;
-  }, [chainId]);
+  }, [chainId, provider]);
 
   const usdtContract = useMemo(() => {
     const curChain = networks.find((v) => chainId == v.chainId);
@@ -52,7 +52,7 @@ export const useContract = (): {
     );
 
     return usdtContract;
-  }, [chainId]);
+  }, [chainId, provider]);
 
   return {
     flexirContract,

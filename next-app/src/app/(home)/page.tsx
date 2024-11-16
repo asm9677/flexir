@@ -67,7 +67,6 @@ export default function Page() {
   const { flexirContract } = useContract();
   const searchParams = useSearchParams();
 
-  const [contract, setContract] = useState<Contract | null>(null);
   const [selected, setSelected] = useState(1);
   const [selectedToken, setSelectedToken] = useState("ALL");
   const [cardData, setCardData] = useState<(NewOffer | NewResaleOffer)[]>([]);
@@ -107,9 +106,12 @@ export default function Page() {
   };
 
   const getOffers = async () => {
-    console.log(contract);
-    const offerEvents = await contract!.queryFilter("NewOffer", 0, "latest");
-    const resaleOfferEvents = await contract!.queryFilter(
+    const offerEvents = await flexirContract.queryFilter(
+      "NewOffer",
+      0,
+      "latest"
+    );
+    const resaleOfferEvents = await flexirContract.queryFilter(
       "NewResaleOffer",
       0,
       "latest"
@@ -150,14 +152,13 @@ export default function Page() {
   };
 
   useEffect(() => {
-    if (contract !== null || !provider) return;
-    setContract(flexirContract);
-  }, [provider]);
-
-  useEffect(() => {
-    if (contract === null) return;
+    if (
+      flexirContract.target === "0x0000000000000000000000000000000000000000" ||
+      !provider
+    )
+      return;
     getOffers();
-  }, [contract]);
+  }, [flexirContract]);
 
   useEffect(() => {
     if (cardData.length === 0) return;
