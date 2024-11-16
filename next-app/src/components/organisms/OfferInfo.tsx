@@ -72,7 +72,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
           0,
           "latest"
         );
-        console.log(originOfferId,originOfferTxEvent)
+
         setOriginOfferTx(originOfferTxEvent[0].transactionHash);
       } catch (error) {
         console.error("Failed to fetch origin offer tx: ", error);

@@ -3,7 +3,7 @@ import ERC20ABI from "./abis/ERC20ABI.json";
 
 export const contracts = {
   flexir: {
-    address: "0x48EfDb7b1995432fb733FadE4Aa4b7CB03e6cF03",
+    address: "0x0288a6f94a24ab2ad271c3165c9947c09509285f",
     abi: flexirABI,
   },
   token: {

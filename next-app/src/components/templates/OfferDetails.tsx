@@ -10,6 +10,7 @@ import { Contract, ethers } from "ethers";
 import OfferHistory from "../organisms/OfferHistory";
 import OfferTradeWidget from "../organisms/OfferTradeWidget";
 import OfferInfo from "../organisms/OfferInfo";
+import ResaleModal from "./ResaleModal";
 
 interface OfferPageProps {
   offerId: string;
@@ -135,7 +136,9 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
   const fetchToken = async () => {
     if (offer) {
       try {
-        const token = await flexirContract.getToken(offer.tokenId);
+        const token = await (
+          flexirContract.connect(signer) as Contract
+        ).getToken(offer.tokenId);
         setToken(token);
       } catch (error) {
         console.error("Failed to fetch token: ", error);
@@ -394,6 +397,16 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
           )}
         </Flex>
       </Box>
+      {isOpen && (
+        <ResaleModal
+          isOpen={isOpen}
+          onClose={onClose}
+          orderData={order}
+          pointMarketContract={flexirContract}
+          signer={signer}
+          orderId={orderId}
+        />
+      )}
     </>
   );
 };

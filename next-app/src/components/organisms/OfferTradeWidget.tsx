@@ -6,6 +6,7 @@ import Link from "next/link";
 import React, { FC, useEffect, useMemo, useState } from "react";
 import { FaDiscord, FaHome, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import { FaArrowDownLong } from "react-icons/fa6";
+import { notify } from "../../lib";
 import { Contract } from "ethers";
 import { useRouter } from "next/navigation";
 import OfferInputBox from "../molecules/OfferInputBox";
@@ -77,22 +78,27 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
 
         const userBalance = await tokenContract.balanceOf(signer.address);
         if (userBalance < parseUnits(tokenAmount, 24)) {
+          notify("Unsufficient user balance.", false);
           return;
         }
 
         try {
+          notify("Checking Allowance...", true);
           const currentAllowance = await tokenContract.allowance(
             signer.address,
             flexirContract.getAddress()
           );
 
           if (currentAllowance < parseUnits(tokenAmount, 24)) {
+            notify("Approving GRASS...", true);
             const approveTx = await (
               tokenContract.connect(signer) as Contract
             ).approve(flexirContract.getAddress(), parseUnits(tokenAmount, 24));
             await approveTx.wait();
+
+            notify("Approval completed !", true);
           } else {
-            
+            notify("Checking completed !", true);
           }
 
           if (offer.originalOrderId == 0n) {
@@ -118,13 +124,16 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             await settleFilledTx.wait();
           }
 
+          notify("Transaction confirmed successfully !", true);
         } catch (error: any) {
           console.error("Error allowance: ", error);
+          notify(error.shortMessage, false);
         }
 
         fetchBase();
       } catch (error: any) {
         console.error(error);
+        notify(error.shortMessage, false);
       } finally {
         setIsActionLoading(false);
       }
@@ -160,24 +169,30 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
 
         const userBalance = await usdtContract.balanceOf(signer.address);
         if (userBalance < offer.value) {
+          notify("Unsufficient user balance.", false);
           return;
         }
 
         try {
+          notify("Checking Allowance...", true);
           const currentAllowance = await usdtContract.allowance(
             signer.address,
             flexirContract.getAddress()
           );
 
           if (currentAllowance < offer.value) {
+            notify("Approving USDT...", true);
             const approveTx = await (
               usdtContract.connect(signer) as Contract
             ).approve(flexirContract.getAddress(), offer.value);
             await approveTx.wait();
+            notify("Approval completed !", true);
           } else {
+            notify("Checking completed !", true);
           }
         } catch (error: any) {
           console.error("Error allowance: ", error);
+          notify(error.shortMessage, false);
         }
 
         if (offer.originalOrderId == 0n) {
@@ -192,9 +207,11 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
           await fillResaleOfferTx.wait();
         }
 
+        notify("Transaction confirmed successfully !", true);
         fetchBase();
       } catch (error: any) {
         console.error(error);
+        notify(error.shortMessage, false);
       } finally {
         setIsActionLoading(false);
       }
@@ -205,12 +222,14 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
     if (signer && flexirContract) {
       try {
         setIsActionLoading(true);
+        notify("Canceling offer...", true);
         const cancelOfferTx = await (
           flexirContract.connect(signer) as Contract
         ).cancelOffer(offerId);
         await cancelOfferTx.wait();
 
         router.push("/");
+        notify("Offer canceled !", true);
       } catch (error) {
         console.error(error);
       } finally {
