@@ -17,6 +17,11 @@ import {
 import React, { useRef, useState } from "react";
 import { notify, tokens, coins } from "../../lib";
 import { FaAngleDown } from "react-icons/fa";
+import { useAccount } from "@/context/AccountProvider";
+import { useContract } from "@/hooks/useContract";
+import { useRouter } from "next/navigation";
+import { keyframes } from "@emotion/react";
+import { onClickDeposit } from "@/utils/newOffer";
 
 const CreateOffer = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -30,6 +35,12 @@ const CreateOffer = () => {
   const [isCoinOpen, setisCoinOpen] = useState<boolean>(false);
   const [selectedToken, setSelectedToken] = useState<number>(1);
   const [selectedCoin, setSelectedCoin] = useState<number>(1);
+  const [newOfferLoading, setNewOfferLoading] = useState<boolean>(false);
+  const [isSameDomain, setIsSameDomain] = useState(false);
+
+  const { signer, chainId } = useAccount();
+  const { flexirContract, usdtContract } = useContract();
+  const router = useRouter();
 
   const pricePerPointRef = useRef<HTMLInputElement>(null);
   const buyingRef = useRef<HTMLInputElement>(null);
@@ -87,9 +98,45 @@ const CreateOffer = () => {
     return coin ? coin.src : undefined;
   };
 
-  const onClickBack = () => {};
+  const pulse = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+  const onClickBack = () => {
+    if (isSameDomain) {
+      router.back();
+    } else {
+      router.push("/");
+    }
+  };
 
   const onClickNext = () => {
+    if (pricePerPoint === null) {
+      notify("Price per Point is required", false);
+      pricePerPointRef.current?.focus();
+      return;
+    }
+
+    if (buying === null) {
+      notify("Buying amount is required", false);
+      buyingRef.current?.focus();
+      return;
+    }
+
+    if (forUsdt === null) {
+      notify("For USDT value is required", false);
+      forUsdtRef.current?.focus();
+      return;
+    }
+
     setCurrentPage(2);
   };
 
@@ -518,8 +565,8 @@ const CreateOffer = () => {
                       })}
                       &nbsp;
                       <Image
-                        src="/images/logo_grass.png"
-                        alt="usdt"
+                        src="/images/logo_token.png"
+                        alt="token"
                         width="24px"
                         height="24px"
                       />
@@ -565,17 +612,38 @@ const CreateOffer = () => {
                       bgColor="green.200"
                       textColor="black"
                       _hover={{ bg: "green.200" }}
+                      onClick={() =>
+                        onClickDeposit(
+                          flexirContract,
+                          signer,
+                          isSell,
+                          buying,
+                          forUsdt,
+                          usdtContract,
+                          setNewOfferLoading,
+                          router
+                        )
+                      }
+                      sx={{
+                        animation: newOfferLoading
+                          ? `${pulse} 1.5s infinite`
+                          : "none",
+                      }}
                     >
-                      <>
-                        {`DEPOSIT ${forUsdt?.toLocaleString()} USDT`}
-                        <Image
-                          src="/images/logo_USDT.png"
-                          alt="usdt"
-                          width="24px"
-                          height="24px"
-                          ml="1"
-                        />
-                      </>
+                      {newOfferLoading ? (
+                        "Loading..."
+                      ) : (
+                        <>
+                          {`DEPOSIT ${forUsdt?.toLocaleString()} USDT`}
+                          <Image
+                            src="/images/logo_USDT.png"
+                            alt="usdt"
+                            width="24px"
+                            height="24px"
+                            ml="1"
+                          />
+                        </>
+                      )}
                     </Button>
                   </Flex>
                 </Flex>
