@@ -9,6 +9,8 @@ import { Box } from "@chakra-ui/react";
 import { AccountProvider } from "@/context/AccountProvider";
 import { Header } from "@/components/organisms/Header";
 import { PointBar } from "@/components/organisms/PointBar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Flexir",
@@ -25,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ToastContainer />
         <Providers>
           <Box maxW={"1920px"} mx="auto">
             <AccountProvider>
