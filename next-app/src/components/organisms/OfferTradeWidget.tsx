@@ -140,10 +140,6 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
     }
   };
 
-  useEffect(() => {
-    console.log(offer, offer.offerType);
-  }, [offer]);
-
   const onClickSettleCancelled = async () => {
     if (signer && flexirContract && offer) {
       try {
@@ -446,7 +442,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             ) : // 본인의 오퍼일 경우 (첫 거래 체결 후)
             order?.seller === signer?.address ? (
               <Button
-                colorScheme="green.200"
+                colorScheme="green"
                 w="full"
                 onClick={onOpen}
                 isDisabled={isSelling}
