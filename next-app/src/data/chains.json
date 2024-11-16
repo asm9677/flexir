@@ -15,7 +15,7 @@
           {
             "name": "TEMP",
             "address": "0x0000000000000000000000000000000000000000",
-            "img": "/symbol/Ethereum.png"
+            "src": "/symbol/Ethereum.png"
           }
         ]
       },
@@ -92,11 +92,17 @@
         "flexirAddress": "0x0000000000000000000000000000000000000000",
         "usdtAddress": "0x0000000000000000000000000000000000000000",
         "projects": [
-          {
-            "name": "TEMP",
-            "address": "0x0000000000000000000000000000000000000000",
-            "img": "/symbol/Ethereum.png"
-          }
+            {
+                "name": "TEMP",
+                "address": "0x0000000000000000000000000000000000000000",
+                "img": "/symbol/Ethereum.png"
+              },
+
+              {
+                "name": "TEMP2",
+                "address": "0x0000000000000000000000000000000000000000",
+                "img": "/symbol/Ethereum.png"
+              }
         ]
       }
 ]

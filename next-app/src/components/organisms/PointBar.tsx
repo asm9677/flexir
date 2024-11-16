@@ -14,9 +14,9 @@ import {
 } from "@chakra-ui/react";
 import { Contract } from "ethers";
 import { useRouter } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-
+import networks from "@/data/chains.json";
 
 const getBlockTimeInterval = (chainId: number) => {
     switch(chainId) {
@@ -39,13 +39,9 @@ export const PointBar: FC = () => {
   const [volume7, setVolume7] = useState<number>();
   const [contract, setContract] = useState<Contract | null>(null);
 
-  const tokens = [
-    {
-      id: 1,
-      name: "token",
-      src: "",
-    },
-  ];
+  const curTokens = useMemo(() => {
+    return networks.find((v) => chainId == v.chainId)?.projects;
+  }, [networks, chainId])
 
   const getTokenName = (id: number):string => {
     switch (id) {
@@ -152,7 +148,7 @@ export const PointBar: FC = () => {
                 >
                   {selectedToken === 0
                     ? "All Tokens"
-                    : tokens.filter((t) => t.id === selectedToken)[0].name}
+                    : curTokens?.filter((t,i) => i+1 === selectedToken)[0].name}
                 </MenuButton>
                 <MenuList bgColor={"gray.700"} fontSize={"sm"} minWidth="200px">
                   <MenuItem onClick={() => {
@@ -160,11 +156,11 @@ export const PointBar: FC = () => {
                   }>
                     All Tokens
                   </MenuItem>
-                  {tokens.map((el) => (
+                  {curTokens?.map((el,i) => (
                     <MenuItem
-                      key={el.id}
+                      key={i+1}
                       onClick={() => {
-                        setSelectedToken(el.id);
+                        setSelectedToken(i+1);
                         setOnChanged(onChanged+1);
                       }}
                     >
