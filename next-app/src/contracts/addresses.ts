@@ -7,11 +7,11 @@ export const contracts = {
     abi: flexirABI,
   },
   token: {
-    address: "0xf7f0c8E9AB34885581373afD92FD0f185f20dB2E",
+    address: "0x03055Eb06D439912D6C783b195F22723cE97B221",
     abi: ERC20ABI,
   },
   usdt: {
-    address: "0xDf13e17B411628106Dd4E6409e60C577571B220C",
+    address: "0x9589d417Fef5648518A512F378Ad257c8D3Fb9b3",
     abi: ERC20ABI,
   },
 };

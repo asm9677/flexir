@@ -3,6 +3,7 @@ import { contracts } from "../contracts/addresses";
 import { notify } from "../lib";
 import flexirABI from "../contracts/abis/flexirABI.json";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { sendTransaction } from "@/lib/venn";
 
 export const onClickDeposit = async (
   flexirContract: Contract | null,
@@ -53,28 +54,42 @@ export const onClickDeposit = async (
         notify(error.shortMessage, false);
       }
 
-      const tx = await (flexirContract.connect(signer) as Contract).newOffer(
-        offerType,
-        tokenId,
-        offerAmount,
-        offerValue,
-        contracts.usdt.address
+      const encodedData = flexirContract.interface.encodeFunctionData(
+        "newOffer",
+        [offerType, tokenId, offerAmount, offerValue, contracts.usdt.address]
       );
 
-      const txResult = await tx.wait();
+      const txResult = await sendTransaction(
+        signer,
+        flexirContract?.target,
+        signer.address,
+        encodedData,
+        "0"
+      );
+
+      // const tx = await flexirContract.newOffer(
+      //   offerType,
+      //   tokenId,
+      //   offerAmount,
+      //   offerValue,
+      //   contracts.usdt.address
+      // );
+
+      // const txResult = await tx.wait();
 
       const iface = new ethers.Interface(flexirABI);
 
       notify("Transaction confirmed successfully !", true);
       setTimeout(() => {
-        console.log(txResult.logs)
-        console.log(txResult.logs[1])
-        console.log(iface.parseLog(txResult.logs[1]))
-        router.push(
-          `/offer/${Number(
-            iface.parseLog(txResult.logs[1])?.args[0]
-          ).toString()}`
-        );
+        console.log(txResult);
+        // console.log(txResult.logs);
+        // console.log(txResult.logs[1]);
+        // console.log(iface.parseLog(txResult.logs[1]));
+        // router.push(
+        //   `/offer/${Number(
+        //     iface.parseLog(txResult.logs[1])?.args[0]
+        //   ).toString()}`
+        // );
       }, 2000);
     } catch (error: any) {
       console.error("Error newOffer: ", error);
