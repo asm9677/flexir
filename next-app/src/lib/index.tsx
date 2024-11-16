@@ -18,3 +18,19 @@ export const notify = (message: string, isSuccess: boolean) => {
     progressClassName: `${isSuccess ? "bg-green.100" : "bg-red-600"}`,
   });
 };
+
+export const tokens = [
+  {
+    id: 1,
+    name: "token",
+    src: "/images/logo_token.png",
+  },
+];
+
+export const coins = [
+  {
+    id: 1,
+    name: "USDT",
+    src: "/images/logo_USDT.png",
+  },
+];
