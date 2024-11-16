@@ -285,7 +285,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                   <Flex gap={4}>
                     <Flex flexDir="column">
                       <Image
-                        src="/images/Grass.png"
+                        src="/images/Morph.png"
                         alt="logo"
                         w="60px"
                         h="60px"
@@ -324,7 +324,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                           {Number(orderData.amount) / WEI6}
                         </Text>
                         <Image
-                          src="/images/Grass.png"
+                          src="/images/Morph.png"
                           alt="usdt"
                           width="24px"
                           height="24px"
@@ -382,8 +382,8 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     </Flex>
                     <Box>
                       <Image
-                        src="/images/grass.png"
-                        alt="grass"
+                        src="/images/Morph.png"
+                        alt="Morph"
                         rounded="full"
                         w="44px"
                         h="44px"
@@ -441,7 +441,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     <Text fontWeight="bold" color="white">
                       {`You are selling your rights of ${
                         isBuyer ? "Buying" : "Selling"
-                      } Grass Points for `}
+                      } Morph Points for `}
                       {pricePerPoint
                         ? `${pricePerPoint} USDT per point.`
                         : "N/A"}

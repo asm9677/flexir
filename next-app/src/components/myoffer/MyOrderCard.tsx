@@ -181,8 +181,8 @@ const MyOrderCard: FC<OrderProps> = ({
         <Flex fontWeight="bold" fontFamily={"lato"} gap={4}>
           <Avatar
             boxSize="20px"
-            name={`grass Logo`}
-            src={`/images/Grass.png`}
+            name={`Morph Logo`}
+            src={`/images/Morph.png`}
           />{" "}
           GRASS{" "}
           <Tag colorScheme="cyan" py={1} px={2} fontSize={"xs"}>

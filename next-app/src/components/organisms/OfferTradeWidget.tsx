@@ -253,7 +253,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
         <Flex flexDir="column">
           <Flex alignItems={"center"} gap={4}>
             <Image
-              src="/images/grass.png"
+              src="/images/Morph.png"
               alt="logo"
               w="60px"
               h="60px"
@@ -264,7 +264,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
                 GRASS
               </Text>
               <Flex gap={1} alignItems="center">
-                <Link href="https://x.com/getgrass_io" target="_blank">
+                <Link href="https://x.com/getMorph_io" target="_blank">
                   <FaTelegramPlane color="white" />
                 </Link>
                 <Link href="https://t.me/fulltime_scam" target="_blank">
@@ -273,7 +273,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
                 <Link href="https://discord.gg/jHKM36qC" target="_blank">
                   <FaDiscord color="white" />
                 </Link>
-                <Link href="https://app.getgrass.io/" target="_blank">
+                <Link href="https://app.getMorph.io/" target="_blank">
                   <FaHome color="white" />
                 </Link>
               </Flex>
@@ -283,7 +283,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
         <Flex flexDir="column" mt={5} gap={3}>
           <OfferInputBox
             src={
-              offer?.offerType === 1n ? "/images/usdt.png" : "/images/grass.png"
+              offer?.offerType === 1n ? "/images/usdt.png" : "/images/Morph.png"
             }
             name={offer?.offerType === 1n ? "PRICE" : "POINTS"}
             value={offer?.offerType === 1n ? offer.value : offer.amount}
@@ -293,7 +293,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
           </Flex>
           <OfferInputBox
             src={
-              offer?.offerType === 1n ? "/images/grass.png" : "/images/usdt.png"
+              offer?.offerType === 1n ? "/images/Morph.png" : "/images/usdt.png"
             }
             name={offer?.offerType === 1n ? "POINTS" : "PRICE"}
             value={offer?.offerType === 1n ? offer.amount : offer.value}
