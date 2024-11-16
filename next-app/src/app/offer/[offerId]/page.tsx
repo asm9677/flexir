@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import OfferDetails from "@/components/templates/OfferDetails";
 
 interface OfferPageProps {
@@ -7,10 +6,11 @@ interface OfferPageProps {
   };
 }
 
-const Offer: NextPage<OfferPageProps> = ({ params }) => {
-  const { offerId } = params;
-  
-  return <OfferDetails offerId={offerId} />;
+const OfferPage = ({ params }: OfferPageProps) => {
+  console.log(params)
+  // const { offerId } =  params;
+
+  return <OfferDetails offerId={"123"} />;
 };
 
-export default Offer;
+export default OfferPage;

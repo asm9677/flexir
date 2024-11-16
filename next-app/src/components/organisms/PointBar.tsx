@@ -47,7 +47,7 @@ export const PointBar: FC = () => {
     },
   ];
 
-  const getTokenName = (id: number) => {
+  const getTokenName = (id: number):string => {
     switch (id) {
       case 1:
         return "token";
