@@ -13,10 +13,10 @@
     "usdtAddress": "0x0000000000000000000000000000000000000000",
     "projects": [
       {
-        "name": "TEMP",
+        "name": "ETHGLOBAL",
         "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "address": "0x0000000000000000000000000000000000000000",
-        "src": "/symbol/Ethereum.png"
+        "src": "/symbol/EthereumGlobal.jpeg"
       }
     ]
   },
@@ -34,10 +34,10 @@
     "usdtAddress": "0x0000000000000000000000000000000000000000",
     "projects": [
       {
-        "name": "TEMP",
+        "name": "ORB",
         "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "address": "0x0000000000000000000000000000000000000000",
-        "img": "/symbol/Ethereum.png"
+        "img": "/symbol/OrbiterFinance.jpeg"
       }
     ]
   },
@@ -55,10 +55,10 @@
     "usdtAddress": "0x0000000000000000000000000000000000000000",
     "projects": [
       {
-        "name": "TEMP",
+        "name": "ZIRCUIT",
         "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "address": "0x0000000000000000000000000000000000000000",
-        "img": "/symbol/Ethereum.png"
+        "img": "/symbol/Zircuit.jpeg"
       }
     ]
   },
@@ -76,10 +76,31 @@
     "usdtAddress": "0x0000000000000000000000000000000000000000",
     "projects": [
       {
-        "name": "TEMP",
+        "name": "ETHGLOBAL",
         "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
         "address": "0x0000000000000000000000000000000000000000",
-        "img": "/symbol/Ethereum.png"
+        "src": "/symbol/EthereumGlobal.jpeg"
+      }
+    ]
+  },
+  {
+    "src": "/symbol/Morph.png",
+    "balance": "/symbol/Morph.png",
+    "chainId": 2810,
+    "network": "Morph",
+    "rpc": ["https://rpc-holesky.morphl2.io"],
+    "name": "Morph Holesky Testnet",
+    "symbol": "MORPH",
+    "decimals": 18,
+    "blockExplorerUrl": ["https://explorer-holesky.morphl2.io"],
+    "flexirAddress": "0x0000000000000000000000000000000000000000",
+    "usdtAddress": "0x0000000000000000000000000000000000000000",
+    "projects": [
+      {
+        "name": "Morph",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "address": "0x0000000000000000000000000000000000000000",
+        "src": "/symbol/Morph.png"
       }
     ]
   },
