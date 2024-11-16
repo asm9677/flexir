@@ -1,5 +1,6 @@
 "use client";
 import { useAccount } from "@/context/AccountProvider";
+import networks from "@/data/chains.json"
 import {
   Menu,
   MenuButton,
@@ -14,64 +15,6 @@ import { BigNumberish } from "ethers";
 import { AddressLike, formatEther } from "ethers";
 import { useEffect, useMemo, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
-
-export const networks = [
-  {
-    src: "/symbol/Ethereum.png",
-    balance: "/symbol/eth_symbol.png",
-    chainId: 1,
-    network: "Ethereum",
-    rpc: ["https://mainnet.infura.io/v3/"],
-    name: "Ether",
-    symbol: "ETH",
-    decimals: 18,
-    blockExplorerUrl: ["https://etherscan.io"],
-  },
-  {
-    src: "/symbol/Optimism.png",
-    balance: "/symbol/eth_symbol.png",
-    chainId: 10,
-    network: "Optimism",
-    rpc: ["https://mainnet.optimism.io"],
-    name: "Ether",
-    symbol: "ETH",
-    decimals: 18,
-    blockExplorerUrl: ["https://optimistic.etherscan.io"],
-  },
-  {
-    src: "/symbol/BNB.png",
-    balance: "/symbol/bnb_symbol.png",
-    chainId: 56,
-    network: "BNB Chain",
-    rpc: ["https://bsc-dataseed.binance.org/"],
-    name: "Binance Coin",
-    symbol: "BNB",
-    decimals: 18,
-    blockExplorerUrl: ["https://bscscan.com"],
-  },
-  {
-    src: "/symbol/Arbitrum.png",
-    balance: "/symbol/eth_symbol.png",
-    chainId: 42161,
-    network: "Arbitrum",
-    rpc: ["https://arb1.arbitrum.io/rpc"],
-    name: "Ether",
-    symbol: "ETH",
-    decimals: 18,
-    blockExplorerUrl: ["https://arbiscan.io"],
-  },
-  {
-    src: "/symbol/ethereum_logo.svg",
-    balance: "/symbol/eth_symbol.png",
-    chainId: 11155111,
-    network: "Sepolia",
-    rpc: ["https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID"],
-    name: "Sepolia Test Ether",
-    symbol: "ETH",
-    decimals: 18,
-    blockExplorerUrl: ["https://sepolia.etherscan.io"],
-  },
-];
 
 const DropdownButton = () => {
   const { signer, chainId, account } = useAccount();
