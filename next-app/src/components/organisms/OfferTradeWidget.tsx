@@ -40,7 +40,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
   isSelling,
 }) => {
   const router = useRouter();
-  const { signer } = useAccount();
+  const { signer, provider } = useAccount();
   const { flexirContract, tokenContract, usdtContract } = useContract();
   const [isActionLoading, setIsActionLoading] = useState<boolean>(false);
 
@@ -90,7 +90,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
           );
 
           if (currentAllowance < parseUnits(tokenAmount, 24)) {
-            notify("Approving GRASS...", true);
+            notify("Approving MORPH...", true);
             const approveTx = await (
               tokenContract.connect(signer) as Contract
             ).approve(flexirContract.getAddress(), parseUnits(tokenAmount, 24));
@@ -101,10 +101,14 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             notify("Checking completed !", true);
           }
 
+          const latestBlock = await provider!.getBlock("latest");
+          const latestBlockNumber = latestBlock!.number;
+          const fromBlockNumber = latestBlockNumber - 4500;
+
           if (offer.originalOrderId == 0n) {
             const newOrderEvent = await flexirContract.queryFilter(
               flexirContract.filters.NewOrder(null, offerId),
-              0,
+              fromBlockNumber,
               "latest"
             );
 
@@ -261,7 +265,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             />
             <Flex flexDirection={"column"}>
               <Text fontWeight="bold" fontSize="18px" textColor="white">
-                GRASS
+                MORPH
               </Text>
               <Flex gap={1} alignItems="center">
                 <Link href="https://x.com/getMorph_io" target="_blank">
@@ -498,7 +502,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             >
               {offer?.offerType == 1n ? "BUYING" : "SELLING"}
             </Box>{" "}
-            {formatUnits(offer.amount, 6)} GRASS{" "}
+            {formatUnits(offer.amount, 6)} MORPH{" "}
             <Box as="span" color="#606064">
               for
             </Box>{" "}
@@ -508,7 +512,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             <Box as="span" color="#606064">
               You will automatically receive
             </Box>{" "}
-            GRASS{" "}
+            MORPH{" "}
             <Box as="span" color="#606064">
               token after settlement.
             </Box>

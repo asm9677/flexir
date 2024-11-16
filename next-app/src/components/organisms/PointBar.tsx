@@ -19,13 +19,13 @@ import { IoIosArrowDown } from "react-icons/io";
 import networks from "@/data/chains.json";
 
 const getBlockTimeInterval = (chainId: number) => {
-    switch(chainId) {
-        case 111555111:
-            return 12;
-        default:
-            return 1;    
-    }
-}
+  switch (chainId) {
+    case 111555111:
+      return 12;
+    default:
+      return 1;
+  }
+};
 
 export const PointBar: FC = () => {
   const { provider, chainId } = useAccount();
@@ -41,9 +41,9 @@ export const PointBar: FC = () => {
 
   const curTokens = useMemo(() => {
     return networks.find((v) => chainId == v.chainId)?.projects;
-  }, [networks, chainId])
+  }, [networks, chainId]);
 
-  const getTokenName = (id: number):string => {
+  const getTokenName = (id: number): string => {
     switch (id) {
       case 1:
         return "token";
@@ -54,13 +54,14 @@ export const PointBar: FC = () => {
   const getEventsByDay = async (days: number, blockTimeInterval: number) => {
     const latestBlock = await provider!.getBlock("latest");
     const latestBlockNumber = latestBlock!.number;
-    const fromBlockNumber = latestBlockNumber - 86400 / blockTimeInterval * days
-    
+    const fromBlockNumber = latestBlockNumber - 4500;
+
     const newOfferEvents = await contract!.queryFilter(
       "NewOffer",
       fromBlockNumber,
       "latest"
     );
+
     const newResaleOfferEvents = await contract!.queryFilter(
       "NewResaleOffer",
       fromBlockNumber,
@@ -97,7 +98,7 @@ export const PointBar: FC = () => {
   }, [provider]);
 
   useEffect(() => {
-    if(onChanged == 0) return;
+    if (onChanged == 0) return;
     router.push(`/?token=${getTokenName(selectedToken)}`);
   }, [onChanged]);
 
@@ -148,20 +149,24 @@ export const PointBar: FC = () => {
                 >
                   {selectedToken === 0
                     ? "All Tokens"
-                    : curTokens?.filter((t,i) => i+1 === selectedToken)[0].name}
+                    : curTokens?.filter((t, i) => i + 1 === selectedToken)[0]
+                        .name}
                 </MenuButton>
                 <MenuList bgColor={"gray.700"} fontSize={"sm"} minWidth="200px">
-                  <MenuItem onClick={() => {
-                    setSelectedToken(0);setOnChanged(onChanged+1);}
-                  }>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedToken(0);
+                      setOnChanged(onChanged + 1);
+                    }}
+                  >
                     All Tokens
                   </MenuItem>
-                  {curTokens?.map((el,i) => (
+                  {curTokens?.map((el, i) => (
                     <MenuItem
-                      key={i+1}
+                      key={i + 1}
                       onClick={() => {
-                        setSelectedToken(i+1);
-                        setOnChanged(onChanged+1);
+                        setSelectedToken(i + 1);
+                        setOnChanged(onChanged + 1);
                       }}
                     >
                       {el.name}

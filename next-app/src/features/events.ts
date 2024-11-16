@@ -1,9 +1,11 @@
+import { useAccount } from "@/context/AccountProvider";
 import { Contract } from "ethers";
 
 export const getOfferEvents = async (
   pointMarketContract: Contract,
   signerAddress?: string
 ): Promise<Offer[]> => {
+  const { provider } = useAccount();
   if (!pointMarketContract || !signerAddress) return [];
 
   try {
@@ -31,15 +33,19 @@ export const getOfferEvents = async (
         signerAddress
       );
 
+    const latestBlock = await provider!.getBlock("latest");
+    const latestBlockNumber = latestBlock!.number;
+    const fromBlockNumber = latestBlockNumber - 4500;
+
     const newOfferResults = pointMarketContract.queryFilter(
       newOfferEventFilter,
-      0,
+      fromBlockNumber,
       "latest"
     );
 
     const newResaleOfferResults = pointMarketContract.queryFilter(
       newResaleOfferEventFilter,
-      0,
+      fromBlockNumber,
       "latest"
     );
 
@@ -95,6 +101,8 @@ export const getOrderEvents = async (
 ): Promise<Order[]> => {
   if (!pointMarketContract || !signerAddress) return [];
   try {
+    const { provider } = useAccount();
+
     // event NewOrder(uint256 id, uint256 indexed offerId, uint256 amount, uint256 value, address indexed seller,address indexed buyer);
     const newOrderEventFilter = pointMarketContract.filters.NewOrder();
 
@@ -102,15 +110,19 @@ export const getOrderEvents = async (
     const resaleOfferFilledFilter =
       pointMarketContract.filters.ResaleOfferFilled();
 
+    const latestBlock = await provider!.getBlock("latest");
+    const latestBlockNumber = latestBlock!.number;
+    const fromBlockNumber = latestBlockNumber - 4500;
+
     const newOrderResults = pointMarketContract.queryFilter(
       newOrderEventFilter,
-      0,
+      fromBlockNumber,
       "latest"
     );
 
     const resaleOfferFilledResults = pointMarketContract.queryFilter(
       resaleOfferFilledFilter,
-      0,
+      fromBlockNumber,
       "latest"
     );
 

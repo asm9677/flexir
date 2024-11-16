@@ -23,7 +23,7 @@ export const tokens = [
   {
     id: 1,
     name: "token",
-    src: "/images/logo_token.png",
+    src: "/symbol/Morph.png",
   },
 ];
 

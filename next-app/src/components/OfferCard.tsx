@@ -43,7 +43,7 @@ const OfferCard: FC<OfferProps> = ({ offer }) => {
           <Avatar
             boxSize="20px"
             name={`${offer.symbol} Logo`}
-            src={`/images/Morph.png`}
+            src={`/symbol/Morph.png`}
           />{" "}
           {offer.name}{" "}
           <Tag colorScheme="cyan" py={1} px={2} fontSize={"xs"}>

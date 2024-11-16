@@ -50,10 +50,14 @@ const OfferHistory: FC<OfferHistoryProps> = ({
       try {
         let events = [];
 
+        const latestBlock = await provider!.getBlock("latest");
+        const latestBlockNumber = latestBlock!.number;
+        const fromBlockNumber = latestBlockNumber - 4500;
+
         if (offer.originalOrderId == 0n) {
           events = await flexirContract.queryFilter(
             flexirContract.filters.NewOrder(null, offerId),
-            0,
+            fromBlockNumber,
             "latest"
           );
         } else {
@@ -65,12 +69,12 @@ const OfferHistory: FC<OfferHistoryProps> = ({
           const [originalOrderEvents, resaleOfferEvents] = await Promise.all([
             flexirContract.queryFilter(
               flexirContract.filters.NewOrder(null, originalOfferId),
-              0,
+              fromBlockNumber,
               "latest"
             ),
             flexirContract.queryFilter(
               flexirContract.filters.ResaleOfferFilled(offerId),
-              0,
+              fromBlockNumber,
               "latest"
             ),
           ]);

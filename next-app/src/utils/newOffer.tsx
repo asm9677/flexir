@@ -25,7 +25,7 @@ export const onClickDeposit = async (
       const offerAmount = ethers.parseUnits(Number(buying)?.toFixed(6), 6);
       const offerValue = ethers.parseUnits(Number(forUsdt)?.toFixed(6), 6);
 
-      const userBalance = await usdtContract.balanceOf(signer.address);
+      const userBalance = await usdtContract?.balanceOf(signer?.address);
       if (userBalance < offerValue) {
         notify("Unsufficient user balance.", false);
         return;
@@ -67,9 +67,9 @@ export const onClickDeposit = async (
 
       notify("Transaction confirmed successfully !", true);
       setTimeout(() => {
-        console.log(txResult.logs)
-        console.log(txResult.logs[1])
-        console.log(iface.parseLog(txResult.logs[1]))
+        console.log(txResult.logs);
+        console.log(txResult.logs[1]);
+        console.log(iface.parseLog(txResult.logs[1]));
         router.push(
           `/offer/${Number(
             iface.parseLog(txResult.logs[1])?.args[0]

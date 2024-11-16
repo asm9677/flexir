@@ -77,7 +77,7 @@ const MyOfferCard: FC<OfferProps> = ({ offer, pointMarketContract }) => {
             name={`Morph Logo`}
             src={`/images/Morph.png`}
           />{" "}
-          GRASS{" "}
+          MORPH{" "}
           <Tag colorScheme="cyan" py={1} px={2} fontSize={"xs"}>
             No. {offer.offerId.toString()}
           </Tag>

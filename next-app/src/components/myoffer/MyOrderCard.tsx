@@ -184,7 +184,7 @@ const MyOrderCard: FC<OrderProps> = ({
             name={`Morph Logo`}
             src={`/images/Morph.png`}
           />{" "}
-          GRASS{" "}
+          MORPH{" "}
           <Tag colorScheme="cyan" py={1} px={2} fontSize={"xs"}>
             No. {orderData.orderId.toString()}
           </Tag>

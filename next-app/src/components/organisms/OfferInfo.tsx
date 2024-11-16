@@ -48,7 +48,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
   setSettleStatus,
   collateral,
 }) => {
-  const { signer } = useAccount();
+  const { signer, provider } = useAccount();
   const { flexirContract } = useContract();
   const [originOfferTx, setOriginOfferTx] = useState<string>("");
 
@@ -67,9 +67,13 @@ const OfferInfo: FC<OfferInfoProps> = ({
           originOfferId = originalOrder.offerId;
         }
 
+        const latestBlock = await provider!.getBlock("latest");
+        const latestBlockNumber = latestBlock!.number;
+        const fromBlockNumber = latestBlockNumber - 4500;
+
         const originOfferTxEvent = await flexirContract.queryFilter(
           flexirContract.filters.NewOffer(originOfferId),
-          0,
+          fromBlockNumber,
           "latest"
         );
 
@@ -91,7 +95,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
       <Flex flexDir="column" w="full" m={4} justifyContent="space-between">
         <Flex w="full" justifyContent="space-between">
           <Text color="gray.300">Offer</Text>
-          <Text color="white">{formatUnits(offer.amount, 6)} GRASS</Text>
+          <Text color="white">{formatUnits(offer.amount, 6)} MORPH</Text>
         </Flex>
         <hr style={{ borderColor: "#234753" }} />
         <Flex w="full" justifyContent="space-between">
@@ -184,7 +188,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
         <Flex w="full" justifyContent="space-between">
           <Text color="gray.300">Token amount</Text>
           <Text color="white">
-            {tokenAmount == "" ? "TGE" : `${tokenAmount} GRASS`}
+            {tokenAmount == "" ? "TGE" : `${tokenAmount} MORPH`}
           </Text>
         </Flex>
         <hr style={{ borderColor: "#234753" }} />

@@ -107,10 +107,18 @@ export default function Page() {
   };
 
   const getOffers = async () => {
-    const offerEvents = await contract!.queryFilter("NewOffer", 0, "latest");
+    const latestBlock = await provider!.getBlock("latest");
+    const latestBlockNumber = latestBlock!.number;
+    const fromBlockNumber = latestBlockNumber - 4500;
+
+    const offerEvents = await contract!.queryFilter(
+      "NewOffer",
+      fromBlockNumber,
+      "latest"
+    );
     const resaleOfferEvents = await contract!.queryFilter(
       "NewResaleOffer",
-      0,
+      fromBlockNumber,
       "latest"
     );
 
@@ -167,7 +175,7 @@ export default function Page() {
           return {
             offerId: offer.offerId,
             symbol: "Morph",
-            name: "GRASS",
+            name: "MORPH",
             amount: ethers.formatUnits(offer.amount, 6),
             price: Number(offer.value) / 10 ** 6,
             point:

@@ -563,7 +563,7 @@ const CreateOffer = () => {
                     })}
                     &nbsp;
                     <Image
-                      src="/images/logo_token.png"
+                      src="/symbol/Morph.png"
                       alt="token"
                       width="24px"
                       height="24px"

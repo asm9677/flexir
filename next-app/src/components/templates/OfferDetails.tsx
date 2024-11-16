@@ -64,7 +64,7 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
         if (offer.originalOrderId == 0n) {
           events = await flexirContract.queryFilter(
             flexirContract.filters.NewOrder(null, offerId),
-            0,
+            13350000,
             "latest"
           );
 
@@ -92,12 +92,12 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
           const [originalOrderEvents, resaleOfferEvents] = await Promise.all([
             flexirContract.queryFilter(
               flexirContract.filters.NewOrder(null, originalOfferId),
-              0,
+              13350000,
               "latest"
             ),
             flexirContract.queryFilter(
               flexirContract.filters.ResaleOfferFilled(offerId),
-              0,
+              13350000,
               "latest"
             ),
           ]);
@@ -168,10 +168,14 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
       try {
         let events = [];
 
+        const latestBlock = await provider!.getBlock("latest");
+        const latestBlockNumber = latestBlock!.number;
+        const fromBlockNumber = latestBlockNumber - 4500;
+
         if (offer.originalOrderId == 0n) {
           events = await flexirContract.queryFilter(
             flexirContract.filters.NewOrder(null, offerId),
-            0,
+            fromBlockNumber,
             "latest"
           );
         } else {
@@ -183,12 +187,12 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
           const [originalOrderEvents, resaleOfferEvents] = await Promise.all([
             flexirContract.queryFilter(
               flexirContract.filters.NewOrder(null, originalOfferId),
-              0,
+              fromBlockNumber,
               "latest"
             ),
             flexirContract.queryFilter(
               flexirContract.filters.ResaleOfferFilled(offerId),
-              0,
+              fromBlockNumber,
               "latest"
             ),
           ]);
@@ -238,6 +242,10 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
       try {
         let events = [];
 
+        const latestBlock = await provider!.getBlock("latest");
+        const latestBlockNumber = latestBlock!.number;
+        const fromBlockNumber = latestBlockNumber - 4500;
+
         const [NewResaleOfferEvent, cancelOfferEvent] = await Promise.all([
           flexirContract.queryFilter(
             flexirContract.filters.NewResaleOffer(
@@ -248,12 +256,12 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
               null,
               signer.address
             ),
-            0,
+            fromBlockNumber,
             "latest"
           ),
           flexirContract.queryFilter(
             flexirContract.filters.CancelOffer(offerId),
-            0,
+            fromBlockNumber,
             "latest"
           ),
         ]);
@@ -276,6 +284,10 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
   const fetchSettleFilled = async () => {
     if (signer && flexirContract && order) {
       try {
+        const latestBlock = await provider!.getBlock("latest");
+        const latestBlockNumber = latestBlock!.number;
+        const fromBlockNumber = latestBlockNumber - 4500;
+
         const settleEvent = await flexirContract.queryFilter(
           flexirContract.filters.SettleFilled(
             orderId,
@@ -283,7 +295,7 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
             null,
             signer.address
           ),
-          0,
+          fromBlockNumber,
           "latest"
         );
 
@@ -319,6 +331,10 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
   const fetchSettleCancelled = async () => {
     if (signer && flexirContract && order && token) {
       try {
+        const latestBlock = await provider!.getBlock("latest");
+        const latestBlockNumber = latestBlock!.number;
+        const fromBlockNumber = latestBlockNumber - 4500;
+
         const claimEvent = await flexirContract.queryFilter(
           flexirContract.filters.SettleCancelled(
             orderId,
@@ -326,7 +342,7 @@ const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
             null,
             signer.address
           ),
-          0,
+          fromBlockNumber,
           "latest"
         );
 

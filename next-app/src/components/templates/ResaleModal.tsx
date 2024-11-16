@@ -18,6 +18,7 @@ import { Contract, ethers } from "ethers";
 import { JsonRpcSigner } from "ethers";
 import Link from "next/link";
 import { FaDiscord, FaHome, FaTelegramPlane, FaTwitter } from "react-icons/fa";
+import { useAccount } from "@/context/AccountProvider";
 
 interface ResaleModalProps {
   isOpen: boolean;
@@ -45,6 +46,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
 }) => {
   const WEI6 = 1000000;
   const USDT_DECIMAL = 1000000;
+  const { provider } = useAccount();
 
   const [pricePerPoint, setPricePerPoint] = useState<string | null>(null);
   const [forUsdt, setForUsdt] = useState<string | null>(null);
@@ -72,9 +74,13 @@ const ResaleModal: FC<ResaleModalProps> = ({
           signer?.address
         );
 
+      const latestBlock = await provider!.getBlock("latest");
+      const latestBlockNumber = latestBlock!.number;
+      const fromBlockNumber = latestBlockNumber - 4500;
+
       const newResaleOfferResults = await pointMarketContract.queryFilter(
         newResaleOfferEventFilter,
-        0,
+        fromBlockNumber,
         "latest"
       );
 
@@ -294,7 +300,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     </Flex>
                     <Flex flexDir="column" justifyContent="center">
                       <Text fontWeight="bold" fontSize="20px" color="white">
-                        GRASS
+                        MORPH
                       </Text>
                       <Flex gap={1} alignItems="center">
                         <Link href="https://x.com/getMorph_io" target="_blank">
