@@ -5,28 +5,30 @@ import React, { FC } from "react";
 import { GoLinkExternal } from "react-icons/go";
 
 interface OfferHistoryCardProps {
+  history: ITradeHistory;
+  value: bigint;
 }
 
-const OfferHistoryCard: FC<OfferHistoryCardProps> = ({ }) => {
+const OfferHistoryCard: FC<OfferHistoryCardProps> = ({ history, value }) => {
   return (
     <Tr alignItems="center">
       <Td color="white" borderColor={"teal.800"}>
-        2024-11-16
+        {history.timestamp}
       </Td>
       <Td color="white" borderColor={"teal.800"}>
-        0x12345...678
+        {history.seller.slice(0, 5) + "..." + history.seller.slice(-3)}
       </Td>
       <Td color="white" borderColor={"teal.800"}>
-      0x12345...678
+        {history.buyer.slice(0, 5) + "..." + history.buyer.slice(-3)}
       </Td>
       <Td color="white" borderColor={"teal.800"}>
-      0x12345...678
+        {formatUnits(value, 6)} USDT
       </Td>
       <Td color="white" borderColor={"teal.800"}>
         <Flex gap={1}>
-        0x12345...678
+          {history.txHash.slice(0, 5) + "..." + history.txHash.slice(-3)}
           <Link
-            href={`https://sepolia.etherscan.io/tx/0x12345678`}
+            href={`https://sepolia.etherscan.io/tx/${history.txHash}`}
             target="_blank"
           >
             <GoLinkExternal color="white" />

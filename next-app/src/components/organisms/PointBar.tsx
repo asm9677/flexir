@@ -176,7 +176,7 @@ export const PointBar: FC = () => {
             )}
           </Menu>
         </Flex>
-        <Flex gap={"32"} borderRadius={"lg"} py="20px" px="32px">
+        <Flex gap={"20"} borderRadius={"lg"} py="20px" px="32px">
           <Flex flexDir="column">
             <Box fontSize="12px">Floor Price</Box>
             <Flex
@@ -250,4 +250,3 @@ export const PointBar: FC = () => {
     </Flex>
   );
 };
-

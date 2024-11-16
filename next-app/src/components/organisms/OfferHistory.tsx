@@ -10,10 +10,15 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import React, { FC,  } from "react";
+import { Contract } from "ethers";
+import React, { FC, useEffect } from "react";
 import OfferHistoryCard from "../molecules/OfferHistoryCard";
 
 interface OfferHistoryProps {
+  offer: IOffer;
+  offerId: string;
+  tradeHistory: ITradeHistory[] | null;
+  setTradeHistory: React.Dispatch<React.SetStateAction<ITradeHistory[] | null>>;
 }
 
 const formatTimestamp = (blockTimestamp: number) => {
@@ -28,7 +33,87 @@ const formatTimestamp = (blockTimestamp: number) => {
 };
 
 const OfferHistory: FC<OfferHistoryProps> = ({
+  offer,
+  offerId,
+  tradeHistory,
+  setTradeHistory,
 }) => {
+  const { signer, provider } = useAccount();
+  const { flexirContract } = useContract();
+
+  useEffect(() => {
+    fetchTradeHistory();
+  }, [offer]);
+
+  const fetchTradeHistory = async () => {
+    if (signer && flexirContract && offer && provider) {
+      try {
+        let events = [];
+
+        if (offer.originalOrderId == 0n) {
+          events = await flexirContract.queryFilter(
+            flexirContract.filters.NewOrder(null, offerId),
+            0,
+            "latest"
+          );
+        } else {
+          const originalOrder = await (
+            flexirContract.connect(signer) as Contract
+          ).getOrder(offer.originalOrderId);
+
+          const originalOfferId = originalOrder.offerId;
+          const [originalOrderEvents, resaleOfferEvents] = await Promise.all([
+            flexirContract.queryFilter(
+              flexirContract.filters.NewOrder(null, originalOfferId),
+              0,
+              "latest"
+            ),
+            flexirContract.queryFilter(
+              flexirContract.filters.ResaleOfferFilled(offerId),
+              0,
+              "latest"
+            ),
+          ]);
+          events = [...originalOrderEvents, ...resaleOfferEvents];
+          events.sort((a, b) => b.blockNumber - a.blockNumber);
+        }
+
+        const tradeHistory = await Promise.all(
+          events.map(async (event) => {
+            const block = await provider.getBlock(event.blockNumber);
+            const timestamp = formatTimestamp(block!.timestamp);
+            const txHash = event.transactionHash;
+            const offerId = event.topics[1];
+
+            let seller, buyer;
+            const log = flexirContract.interface.parseLog(event);
+
+            if (log) {
+              if (log.name === "NewOrder") {
+                seller = log.args[4];
+                buyer = log.args[5];
+              } else if (log.name === "ResaleOfferFilled") {
+                seller = log.args[4];
+                buyer = log.args[3];
+              }
+            }
+
+            return {
+              timestamp,
+              txHash,
+              offerId,
+              seller,
+              buyer,
+            };
+          })
+        );
+
+        setTradeHistory(tradeHistory);
+      } catch (error) {
+        console.error("Failed to fetch trade history: ", error);
+      }
+    }
+  };
 
   return (
     <Flex h="fit-content" w="full">
@@ -70,9 +155,9 @@ const OfferHistory: FC<OfferHistoryProps> = ({
                 </Tr>
               </Thead>
               <Tbody>
-                  <OfferHistoryCard />
-                  <OfferHistoryCard />
-                  <OfferHistoryCard />
+                {tradeHistory?.map((v, i) => (
+                  <OfferHistoryCard history={v} value={offer.value} key={i} />
+                ))}
               </Tbody>
             </Table>
           </TableContainer>

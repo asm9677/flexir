@@ -8,9 +8,9 @@ interface OfferPageProps {
 
 const OfferPage = ({ params }: OfferPageProps) => {
   console.log(params)
-  // const { offerId } =  params;
+  const { offerId } =  params;
 
-  return <OfferDetails offerId={"123"} />;
+  return <OfferDetails offerId={offerId} />;
 };
 
 export default OfferPage;
