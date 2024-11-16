@@ -1,7 +1,7 @@
 import { Contract, ethers } from "ethers";
-import { contracts } from "../contracts/addresses";
-import { notify } from "../lib";
-import flexirABI from "../contracts/abis/flexirABI.json";
+import { contracts } from "@/contracts/addresses";
+import { notify } from "@/lib";
+import flexirABI from "@/contracts/abis/flexirABI.json";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export const onClickDeposit = async (
@@ -14,10 +14,14 @@ export const onClickDeposit = async (
   setNewOfferLoading: (loading: boolean) => void,
   router: AppRouterInstance
 ) => {
+  console.log(1);
   if (!flexirContract || !signer) return;
+  console.log(2);
 
   if (flexirContract) {
+    console.log(3);
     try {
+      console.log(4);
       setNewOfferLoading(true);
 
       const offerType = isSell === true ? 2 : 1;
@@ -25,13 +29,17 @@ export const onClickDeposit = async (
       const offerAmount = ethers.parseUnits(Number(buying)?.toFixed(6), 6);
       const offerValue = ethers.parseUnits(Number(forUsdt)?.toFixed(6), 6);
 
+      console.log(5);
       const userBalance = await usdtContract.balanceOf(signer.address);
+      console.log(6);
       if (userBalance < offerValue) {
+        console.log(7);
         notify("Unsufficient user balance.", false);
         return;
       }
 
       try {
+        console.log(8);
         notify("Checking Allowance...", true);
         const currentAllowance = await usdtContract.allowance(
           signer.address,
