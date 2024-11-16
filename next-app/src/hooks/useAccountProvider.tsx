@@ -1,7 +1,8 @@
 "use client";
 
 import { BrowserProvider, JsonRpcSigner, ethers } from "ethers";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import networks from "@/data/chains.json";
 
 export const useAccountProvider = (): {
   provider: BrowserProvider | null;
@@ -15,7 +16,7 @@ export const useAccountProvider = (): {
   const [account, setAccount] = useState<string | null>(null);
   const [provider, setProvider] = useState<BrowserProvider | null>(null);
   const [signer, setSigner] = useState<JsonRpcSigner | null>(null);
-  const [chainId, setChainId] = useState<number>(1);
+  const [chainId, setChainId] = useState<number>(5000);
 
   const connectProvider = () => {
     const newProvider = new ethers.BrowserProvider(window.ethereum);
@@ -51,11 +52,13 @@ export const useAccountProvider = (): {
       console.error("Failed to connect to MetaMask:", error);
     }
   };
+
   const disconnectWallet = () => {
     setSigner(null);
     setAccount(null);
     window.localStorage.removeItem("loggedIn");
   };
+
   return {
     provider,
     signer,

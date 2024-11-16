@@ -107,6 +107,7 @@ export default function Page() {
   };
 
   const getOffers = async () => {
+    console.log(contract);
     const offerEvents = await contract!.queryFilter("NewOffer", 0, "latest");
     const resaleOfferEvents = await contract!.queryFilter(
       "NewResaleOffer",

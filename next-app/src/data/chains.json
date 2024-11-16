@@ -16,7 +16,7 @@
         "name": "ETHGLOBAL",
         "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000001",
         "address": "0x03055Eb06D439912D6C783b195F22723cE97B221",
-        "src": "/symbol/EthereumGlobal.jpeg"
+        "img": "/symbol/EthereumGlobal.jpeg"
       }
     ]
   },
@@ -58,7 +58,7 @@
         "name": "Morph",
         "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000003",
         "address": "0x3A683e7A3f8873a0389C5Aa8dDf830ebBe0DF311",
-        "src": "/symbol/Morph.png"
+        "img": "/symbol/Morph.png"
       }
     ]
   },
@@ -79,7 +79,7 @@
         "name": "ETHGLOBAL",
         "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000004",
         "address": "0x0000000000000000000000000000000000000000",
-        "src": "/symbol/EthereumGlobal.jpeg"
+        "img": "/symbol/EthereumGlobal.jpeg"
       }
     ]
   },
