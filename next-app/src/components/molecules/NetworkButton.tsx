@@ -1,6 +1,6 @@
 "use client";
 import { useAccount } from "@/context/AccountProvider";
-import networks from "@/data/chains.json"
+import networks from "@/data/chains.json";
 import {
   Menu,
   MenuButton,
@@ -117,7 +117,7 @@ const DropdownButton = () => {
             {balance ? parseFloat(formatEther(balance)).toFixed(4) : 0}
           </Button>
         )}
-        <MenuList bg="white" color="dark" borderColor={"transparent"} p="0">
+        <MenuList bg="white" color="dark" border="1px solid #22232B" p="0">
           {networks.map((v) => (
             <MenuItem
               display="flex"
@@ -137,12 +137,12 @@ const DropdownButton = () => {
                 alt={v.network}
                 rounded={"4px"}
               />
-              <Box fontSize="14px" fontWeight="semibold" color="dark">
+              <Box fontSize="14px" fontWeight="semibold" color="white" ml="3">
                 {v.network}
               </Box>
               {v.chainId === chainId && (
                 <Flex flex="1" justifyContent="flex-end">
-                  <Box bg="#1db1a8" w="8px" h="8px" borderRadius="full"></Box>
+                  <Box bg="green.200" w="8px" h="8px" borderRadius="full"></Box>
                 </Flex>
               )}
             </MenuItem>

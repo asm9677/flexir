@@ -1,110 +1,134 @@
 [
+  {
+    "src": "/symbol/Mantle.png",
+    "balance": "/symbol/Mantle.png",
+    "chainId": 5000,
+    "network": "Mantle",
+    "rpc": ["https://rpc.mantle.xyz"],
+    "name": "Mantle Ether",
+    "symbol": "MNT",
+    "decimals": 18,
+    "blockExplorerUrl": ["https://explorer.mantle.xyz"],
+    "flexirAddress": "0x9747d3C9dcb5968DbA0374e964cE33E5A930595E",
+    "usdtAddress": "0x9589d417Fef5648518A512F378Ad257c8D3Fb9b3",
+    "projects": [
       {
-        "src": "/symbol/Ethereum.png",
-        "balance": "/symbol/eth_symbol.png",
-        "chainId": 1,
-        "network": "Ethereum",
-        "rpc": ["https://mainnet.infura.io/v3/"],
-        "name": "Ether",
-        "symbol": "ETH",
-        "decimals": 18,
-        "blockExplorerUrl": ["https://etherscan.io"],
-        "flexirAddress": "0x0000000000000000000000000000000000000000",
-        "usdtAddress": "0x0000000000000000000000000000000000000000",
-        "projects": [
-          {
-            "name": "TEMP",
-            "address": "0x0000000000000000000000000000000000000000",
-            "src": "/symbol/Ethereum.png"
-          }
-        ]
-      },
-      {
-        "src": "/symbol/Optimism.png",
-        "balance": "/symbol/eth_symbol.png",
-        "chainId": 10,
-        "network": "Optimism",
-        "rpc": ["https://mainnet.optimism.io"],
-        "name": "Ether",
-        "symbol": "ETH",
-        "decimals": 18,
-        "blockExplorerUrl": ["https://optimistic.etherscan.io"],
-        "flexirAddress": "0x0000000000000000000000000000000000000000",
-        "usdtAddress": "0x0000000000000000000000000000000000000000",
-        "projects": [
-          {
-            "name": "TEMP",
-            "address": "0x0000000000000000000000000000000000000000",
-            "img": "/symbol/Ethereum.png"
-          }
-        ]
-      },
-      {
-        "src": "/symbol/BNB.png",
-        "balance": "/symbol/bnb_symbol.png",
-        "chainId": 56,
-        "network": "BNB Chain",
-        "rpc": ["https://bsc-dataseed.binance.org/"],
-        "name": "Binance Coin",
-        "symbol": "BNB",
-        "decimals": 18,
-        "blockExplorerUrl": ["https://bscscan.com"],
-        "flexirAddress": "0x0000000000000000000000000000000000000000",
-        "usdtAddress": "0x0000000000000000000000000000000000000000",
-        "projects": [
-          {
-            "name": "TEMP",
-            "address": "0x0000000000000000000000000000000000000000",
-            "img": "/symbol/Ethereum.png"
-          }
-        ]
-      },
-      {
-        "src": "/symbol/Arbitrum.png",
-        "balance": "/symbol/eth_symbol.png",
-        "chainId": 42161,
-        "network": "Arbitrum",
-        "rpc": ["https://arb1.arbitrum.io/rpc"],
-        "name": "Ether",
-        "symbol": "ETH",
-        "decimals": 18,
-        "blockExplorerUrl": ["https://arbiscan.io"],
-        "flexirAddress": "0x0000000000000000000000000000000000000000",
-        "usdtAddress": "0x0000000000000000000000000000000000000000",
-        "projects": [
-          {
-            "name": "TEMP",
-            "address": "0x0000000000000000000000000000000000000000",
-            "img": "/symbol/Ethereum.png"
-          }
-        ]
-      },
-      {
-        "src": "/symbol/ethereum_logo.svg",
-        "balance": "/symbol/eth_symbol.png",
-        "chainId": 11155111,
-        "network": "Sepolia",
-        "rpc": ["https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID"],
-        "name": "Sepolia Test Ether",
-        "symbol": "ETH",
-        "decimals": 18,
-        "blockExplorerUrl": ["https://sepolia.etherscan.io"],
-        "flexirAddress": "0x0000000000000000000000000000000000000000",
-        "usdtAddress": "0x0000000000000000000000000000000000000000",
-        "projects": [
-            {
-                "name": "TEMP",
-                "address": "0x0000000000000000000000000000000000000000",
-                "img": "/symbol/Ethereum.png"
-              },
-
-              {
-                "name": "TEMP2",
-                "address": "0x0000000000000000000000000000000000000000",
-                "img": "/symbol/Ethereum.png"
-              }
-        ]
+        "name": "ETHGLOBAL",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "address": "0x03055Eb06D439912D6C783b195F22723cE97B221",
+        "src": "/symbol/EthereumGlobal.jpeg"
       }
+    ]
+  },
+  {
+    "src": "/symbol/Linea.png",
+    "balance": "/symbol/Linea.png",
+    "chainId": 59144,
+    "network": "Linea",
+    "rpc": ["https://rpc.linea.build"],
+    "name": "Linea",
+    "symbol": "ETH",
+    "decimals": 18,
+    "blockExplorerUrl": ["https://explorer.linea.build"],
+    "flexirAddress": "0x9747d3C9dcb5968DbA0374e964cE33E5A930595E",
+    "usdtAddress": "0x9589d417Fef5648518A512F378Ad257c8D3Fb9b3",
+    "projects": [
+      {
+        "name": "ORB",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000002",
+        "address": "0x03055Eb06D439912D6C783b195F22723cE97B221",
+        "img": "/symbol/OrbiterFinance.jpeg"
+      }
+    ]
+  },
+  {
+    "src": "/symbol/Morph.png",
+    "balance": "/symbol/Morph.png",
+    "chainId": 2810,
+    "network": "Morph",
+    "rpc": ["https://rpc-holesky.morphl2.io"],
+    "name": "Morph Holesky Testnet",
+    "symbol": "MORPH",
+    "decimals": 18,
+    "blockExplorerUrl": ["https://explorer-holesky.morphl2.io"],
+    "flexirAddress": "0x74A4Cc436435005a03c169d1B99c3bb6356Ce13D",
+    "usdtAddress": "0xAC86cfF21C87262d1F6ca30F54f4eBfe4f573d4F",
+    "projects": [
+      {
+        "name": "Morph",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000003",
+        "address": "0x3A683e7A3f8873a0389C5Aa8dDf830ebBe0DF311",
+        "src": "/symbol/Morph.png"
+      }
+    ]
+  },
+  {
+    "src": "/symbol/Bitkub.png",
+    "balance": "/symbol/Bitkub.png",
+    "chainId": 96,
+    "network": "Bitkub",
+    "rpc": ["https://rpc.bitkubchain.io"],
+    "name": "Bitkub",
+    "symbol": "KUB",
+    "decimals": 18,
+    "blockExplorerUrl": ["https://www.bkcscan.com/"],
+    "flexirAddress": "0x0000000000000000000000000000000000000000",
+    "usdtAddress": "0x0000000000000000000000000000000000000000",
+    "projects": [
+      {
+        "name": "ETHGLOBAL",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000004",
+        "address": "0x0000000000000000000000000000000000000000",
+        "src": "/symbol/EthereumGlobal.jpeg"
+      }
+    ]
+  },
+  {
+    "src": "/symbol/Zircuit.svg",
+    "balance": "/symbol/Zircuit.svg",
+    "chainId": 48900,
+    "network": "Zircuit",
+    "rpc": ["https://zircuit-mainnet.drpc.org"],
+    "name": "Zircuit",
+    "symbol": "ETH",
+    "decimals": 18,
+    "blockExplorerUrl": ["https://explorer.zircuit.com/"],
+    "flexirAddress": "0x0000000000000000000000000000000000000000",
+    "usdtAddress": "0x0000000000000000000000000000000000000000",
+    "projects": [
+      {
+        "name": "ZIRCUIT",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000005",
+        "address": "0x0000000000000000000000000000000000000000",
+        "img": "/symbol/Zircuit.jpeg"
+      }
+    ]
+  },
+  {
+    "src": "/symbol/ethereum_logo.svg",
+    "balance": "/symbol/eth_symbol.png",
+    "chainId": 11155111,
+    "network": "Sepolia",
+    "rpc": ["https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID"],
+    "name": "Sepolia Test Ether",
+    "symbol": "ETH",
+    "decimals": 18,
+    "blockExplorerUrl": ["https://eth-sepolia.blockscout.com/"],
+    "flexirAddress": "0x38d9492F77315275A96CD7F2574C9f425F52Aa66",
+    "usdtAddress": "0xDf13e17B411628106Dd4E6409e60C577571B220C",
+    "projects": [
+      {
+        "name": "Flexir",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+        "address": "0x095ec7b2d081D783f5604D01Baba39dd6F97fC0E",
+        "img": "/symbol/Ethereum.png"
+      },
+      {
+        "name": "TestToken",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000007",
+        "address": "0xf7f0c8E9AB34885581373afD92FD0f185f20dB2E",
+        "img": "/symbol/Ethereum.png"
+      }
+    ]
+  }
 ]
-  
-  
