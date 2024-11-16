@@ -21,6 +21,7 @@ import { Contract, ethers } from "ethers";
 import { FaArrowDownWideShort, FaArrowUpShortWide } from "react-icons/fa6";
 import { useContract } from "@/hooks/useContract";
 import OfferCard from "@/components/OfferCard";
+import { useRouter } from "next/navigation";
 
 interface NewOffer {
   offerId: number;
@@ -212,6 +213,8 @@ export default function Page() {
     const token = searchParams.get("token");
     if (token) {
       setSelectedToken(token);
+    } else {
+      window.location.href = "/?token=all";
     }
   }, [searchParams]);
 
