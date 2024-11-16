@@ -1,0 +1,104 @@
+[
+      {
+        "src": "/symbol/Ethereum.png",
+        "balance": "/symbol/eth_symbol.png",
+        "chainId": 1,
+        "network": "Ethereum",
+        "rpc": ["https://mainnet.infura.io/v3/"],
+        "name": "Ether",
+        "symbol": "ETH",
+        "decimals": 18,
+        "blockExplorerUrl": ["https://etherscan.io"],
+        "flexirAddress": "0x0000000000000000000000000000000000000000",
+        "usdtAddress": "0x0000000000000000000000000000000000000000",
+        "projects": [
+          {
+            "name": "TEMP",
+            "address": "0x0000000000000000000000000000000000000000",
+            "img": "/symbol/Ethereum.png"
+          }
+        ]
+      },
+      {
+        "src": "/symbol/Optimism.png",
+        "balance": "/symbol/eth_symbol.png",
+        "chainId": 10,
+        "network": "Optimism",
+        "rpc": ["https://mainnet.optimism.io"],
+        "name": "Ether",
+        "symbol": "ETH",
+        "decimals": 18,
+        "blockExplorerUrl": ["https://optimistic.etherscan.io"],
+        "flexirAddress": "0x0000000000000000000000000000000000000000",
+        "usdtAddress": "0x0000000000000000000000000000000000000000",
+        "projects": [
+          {
+            "name": "TEMP",
+            "address": "0x0000000000000000000000000000000000000000",
+            "img": "/symbol/Ethereum.png"
+          }
+        ]
+      },
+      {
+        "src": "/symbol/BNB.png",
+        "balance": "/symbol/bnb_symbol.png",
+        "chainId": 56,
+        "network": "BNB Chain",
+        "rpc": ["https://bsc-dataseed.binance.org/"],
+        "name": "Binance Coin",
+        "symbol": "BNB",
+        "decimals": 18,
+        "blockExplorerUrl": ["https://bscscan.com"],
+        "flexirAddress": "0x0000000000000000000000000000000000000000",
+        "usdtAddress": "0x0000000000000000000000000000000000000000",
+        "projects": [
+          {
+            "name": "TEMP",
+            "address": "0x0000000000000000000000000000000000000000",
+            "img": "/symbol/Ethereum.png"
+          }
+        ]
+      },
+      {
+        "src": "/symbol/Arbitrum.png",
+        "balance": "/symbol/eth_symbol.png",
+        "chainId": 42161,
+        "network": "Arbitrum",
+        "rpc": ["https://arb1.arbitrum.io/rpc"],
+        "name": "Ether",
+        "symbol": "ETH",
+        "decimals": 18,
+        "blockExplorerUrl": ["https://arbiscan.io"],
+        "flexirAddress": "0x0000000000000000000000000000000000000000",
+        "usdtAddress": "0x0000000000000000000000000000000000000000",
+        "projects": [
+          {
+            "name": "TEMP",
+            "address": "0x0000000000000000000000000000000000000000",
+            "img": "/symbol/Ethereum.png"
+          }
+        ]
+      },
+      {
+        "src": "/symbol/ethereum_logo.svg",
+        "balance": "/symbol/eth_symbol.png",
+        "chainId": 11155111,
+        "network": "Sepolia",
+        "rpc": ["https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID"],
+        "name": "Sepolia Test Ether",
+        "symbol": "ETH",
+        "decimals": 18,
+        "blockExplorerUrl": ["https://sepolia.etherscan.io"],
+        "flexirAddress": "0x0000000000000000000000000000000000000000",
+        "usdtAddress": "0x0000000000000000000000000000000000000000",
+        "projects": [
+          {
+            "name": "TEMP",
+            "address": "0x0000000000000000000000000000000000000000",
+            "img": "/symbol/Ethereum.png"
+          }
+        ]
+      }
+]
+  
+  
