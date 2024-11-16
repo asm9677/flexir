@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Center,
-  ChakraProvider,
   Circle,
   Flex,
   HStack,
@@ -15,12 +14,12 @@ import {
   useBoolean,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
-import { notify, tokens, coins } from "../../lib";
 import { FaAngleDown } from "react-icons/fa";
 import { useAccount } from "@/context/AccountProvider";
 import { useContract } from "@/hooks/useContract";
 import { useRouter } from "next/navigation";
 import { keyframes } from "@emotion/react";
+import { notify, tokens, coins } from "@/lib";
 import { onClickDeposit } from "@/utils/newOffer";
 
 const CreateOffer = () => {
