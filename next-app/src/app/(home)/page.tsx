@@ -106,7 +106,7 @@ export default function Page() {
   };
 
   const getOffers = async () => {
-    const fromBlock = (await provider!.getBlockNumber()) - 9999;
+    const fromBlock = (await provider!.getBlockNumber()) - 4500;
     const offerEvents = await flexirContract.queryFilter(
       "NewOffer",
       fromBlock,

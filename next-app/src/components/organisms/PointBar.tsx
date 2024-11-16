@@ -19,7 +19,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import networks from "@/data/chains.json";
 
 const getBlockTimeInterval = (chainId: number) => {
-  return 100;
+  return 180;
   // switch (chainId) {
   //   case 96:
   //     return 5;

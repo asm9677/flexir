@@ -29,7 +29,7 @@ export default function RootLayout({
       <body>
         <ToastContainer />
         <Providers>
-          <Box maxW={"1920px"} mx="auto">
+          <Box maxW={"1920px"} minH={"100vh"} mx="auto">
             <AccountProvider>
               <Box>
                 <Header />
