@@ -216,7 +216,7 @@ export default function Page() {
   }, [searchParams]);
 
   return (
-    <Flex color="white" flexDir="column" alignItems="center">
+    <Flex color="white" flexDir="column" alignItems="center" minH="70vh">
       <Flex
         justifyContent="space-between"
         w="100%"
