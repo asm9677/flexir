@@ -19,20 +19,21 @@ import { IoIosArrowDown } from "react-icons/io";
 import networks from "@/data/chains.json";
 
 const getBlockTimeInterval = (chainId: number) => {
-  switch (chainId) {
-    case 96:
-      return 5;
-    case 5000:
-    case 48900:
-    case 59144:
-      return 2;
-    case 111555111:
-      return 12;
-    case 2810:
-      return 1;
-    default:
-      return 15;
-  }
+  return 100;
+  // switch (chainId) {
+  //   case 96:
+  //     return 5;
+  //   case 5000:
+  //   case 48900:
+  //   case 59144:
+  //     return 2;
+  //   case 111555111:
+  //     return 12;
+  //   case 2810:
+  //     return 1;
+  //   default:
+  //     return 15;
+  // }
 };
 
 export const PointBar: FC = () => {
