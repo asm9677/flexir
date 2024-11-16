@@ -14,6 +14,7 @@ import { Contract } from "ethers";
 import { contracts } from "@/contracts/addresses";
 import { getOfferEvents, getOrderEvents } from "@/features/events";
 import MyOffersTab from "@/components/myoffer/MyOffersTab";
+import MyOrdersTab from "@/components/myoffer/MyOrdersTab";
 
 export default function Page() {
   const { signer } = useAccount();
@@ -96,6 +97,19 @@ export default function Page() {
               setOffers={setOffers}
               filteredOffers={filteredOffers}
               pointMarketContract={pointMarketContract}
+            />
+          </TabPanel>
+
+          {/* My Orders Tab */}
+          <TabPanel>
+            <MyOrdersTab
+              subTabIndex={subTabIndex}
+              setSubTabIndex={setSubTabIndex}
+              orders={orders}
+              setOrders={setOrders}
+              offers={offers}
+              pointMarketContract={pointMarketContract}
+              signer={signer}
             />
           </TabPanel>
         </TabPanels>
