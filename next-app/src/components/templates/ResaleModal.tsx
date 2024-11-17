@@ -285,7 +285,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                   <Flex gap={4}>
                     <Flex flexDir="column">
                       <Image
-                        src="/images/grass.png"
+                        src="/symbol/Ethereum.png"
                         alt="logo"
                         w="60px"
                         h="60px"
@@ -294,7 +294,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     </Flex>
                     <Flex flexDir="column" justifyContent="center">
                       <Text fontWeight="bold" fontSize="20px" color="white">
-                        GRASS
+                        FLEXIR
                       </Text>
                       <Flex gap={1} alignItems="center">
                         <Link href="https://x.com/getgrass_io" target="_blank">
@@ -393,7 +393,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     </Flex>
                     <Box>
                       <Image
-                        src="/images/grass.png"
+                        src="/symbol/Ethereum.png"
                         alt="grass"
                         rounded="full"
                         w="44px"

@@ -48,12 +48,13 @@ const OfferInfo: FC<OfferInfoProps> = ({
   setSettleStatus,
   collateral,
 }) => {
-  const { signer } = useAccount();
+  const { signer, curChain } = useAccount();
   const { flexirContract } = useContract();
   const [originOfferTx, setOriginOfferTx] = useState<string>("");
 
   useEffect(() => {
     fetchOriginOffer();
+    console.log(curChain);
   }, [offer]);
 
   const fetchOriginOffer = async () => {
@@ -91,7 +92,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
       <Flex flexDir="column" w="full" m={4} justifyContent="space-between">
         <Flex w="full" justifyContent="space-between">
           <Text color="gray.300">Offer</Text>
-          <Text color="white">{formatUnits(offer.amount, 6)} GRASS</Text>
+          <Text color="white">{formatUnits(offer.amount, 6)} FLEXIR</Text>
         </Flex>
         <hr style={{ borderColor: "#234753" }} />
         <Flex w="full" justifyContent="space-between">
@@ -126,7 +127,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
               {offer.offeredBy.slice(-3)}
             </Text>
             <Link
-              href={`https://sepolia.etherscan.io/address/${offer.offeredBy}`}
+              href={`${curChain?.blockExplorerUrl}/address/${offer.offeredBy}`}
               target="_blank"
             >
               <GoLinkExternal color="white" />
@@ -141,7 +142,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
               {originOfferTx?.slice(0, 5)}...{originOfferTx?.slice(-3)}
             </Text>
             <Link
-              href={`https://sepolia.etherscan.io/tx/${originOfferTx}`}
+              href={`${curChain?.blockExplorerUrl}/tx/${originOfferTx}`}
               target="_blank"
             >
               <GoLinkExternal color="white" />
@@ -184,7 +185,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
         <Flex w="full" justifyContent="space-between">
           <Text color="gray.300">Token amount</Text>
           <Text color="white">
-            {tokenAmount == "" ? "TGE" : `${tokenAmount} GRASS`}
+            {tokenAmount == "" ? "TGE" : `${tokenAmount} FLEXIR`}
           </Text>
         </Flex>
         <hr style={{ borderColor: "#234753" }} />

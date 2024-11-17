@@ -9,14 +9,14 @@
     "symbol": "MNT",
     "decimals": 18,
     "blockExplorerUrl": ["https://explorer.mantle.xyz"],
-    "flexirAddress": "0x0000000000000000000000000000000000000000",
-    "usdtAddress": "0x0000000000000000000000000000000000000000",
+    "flexirAddress": "0x9747d3C9dcb5968DbA0374e964cE33E5A930595E",
+    "usdtAddress": "0x9589d417Fef5648518A512F378Ad257c8D3Fb9b3",
     "projects": [
       {
         "name": "ETHGLOBAL",
-        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "address": "0x0000000000000000000000000000000000000000",
-        "src": "/symbol/EthereumGlobal.jpeg"
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "address": "0x03055Eb06D439912D6C783b195F22723cE97B221",
+        "img": "/symbol/EthereumGlobal.jpeg"
       }
     ]
   },
@@ -30,35 +30,35 @@
     "symbol": "ETH",
     "decimals": 18,
     "blockExplorerUrl": ["https://explorer.linea.build"],
-    "flexirAddress": "0x0000000000000000000000000000000000000000",
-    "usdtAddress": "0x0000000000000000000000000000000000000000",
+    "flexirAddress": "0x9747d3C9dcb5968DbA0374e964cE33E5A930595E",
+    "usdtAddress": "0x9589d417Fef5648518A512F378Ad257c8D3Fb9b3",
     "projects": [
       {
         "name": "ORB",
-        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "address": "0x0000000000000000000000000000000000000000",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000002",
+        "address": "0x03055Eb06D439912D6C783b195F22723cE97B221",
         "img": "/symbol/OrbiterFinance.jpeg"
       }
     ]
   },
   {
-    "src": "/symbol/Zircuit.svg",
-    "balance": "/symbol/Zircuit.svg",
-    "chainId": 48900,
-    "network": "Zircuit",
-    "rpc": ["https://zircuit-mainnet.drpc.org"],
-    "name": "Zircuit",
-    "symbol": "ETH",
+    "src": "/symbol/Morph.png",
+    "balance": "/symbol/Morph.png",
+    "chainId": 2810,
+    "network": "Morph",
+    "rpc": ["https://rpc-holesky.morphl2.io"],
+    "name": "Morph Holesky Testnet",
+    "symbol": "MORPH",
     "decimals": 18,
-    "blockExplorerUrl": ["https://explorer.zircuit.com/"],
-    "flexirAddress": "0x0000000000000000000000000000000000000000",
-    "usdtAddress": "0x0000000000000000000000000000000000000000",
+    "blockExplorerUrl": ["https://explorer.morphl2.io/"],
+    "flexirAddress": "0x74A4Cc436435005a03c169d1B99c3bb6356Ce13D",
+    "usdtAddress": "0xAC86cfF21C87262d1F6ca30F54f4eBfe4f573d4F",
     "projects": [
       {
-        "name": "ZIRCUIT",
-        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "address": "0x0000000000000000000000000000000000000000",
-        "img": "/symbol/Zircuit.jpeg"
+        "name": "Morph",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000003",
+        "address": "0x3A683e7A3f8873a0389C5Aa8dDf830ebBe0DF311",
+        "img": "/symbol/Morph.png"
       }
     ]
   },
@@ -77,30 +77,30 @@
     "projects": [
       {
         "name": "ETHGLOBAL",
-        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000004",
         "address": "0x0000000000000000000000000000000000000000",
-        "src": "/symbol/EthereumGlobal.jpeg"
+        "img": "/symbol/EthereumGlobal.jpeg"
       }
     ]
   },
   {
-    "src": "/symbol/Morph.png",
-    "balance": "/symbol/Morph.png",
-    "chainId": 2810,
-    "network": "Morph",
-    "rpc": ["https://rpc-holesky.morphl2.io"],
-    "name": "Morph Holesky Testnet",
-    "symbol": "MORPH",
+    "src": "/symbol/Zircuit.svg",
+    "balance": "/symbol/Zircuit.svg",
+    "chainId": 48900,
+    "network": "Zircuit",
+    "rpc": ["https://zircuit-mainnet.drpc.org"],
+    "name": "Zircuit",
+    "symbol": "ETH",
     "decimals": 18,
-    "blockExplorerUrl": ["https://explorer-holesky.morphl2.io"],
+    "blockExplorerUrl": ["https://explorer.zircuit.com/"],
     "flexirAddress": "0x0000000000000000000000000000000000000000",
     "usdtAddress": "0x0000000000000000000000000000000000000000",
     "projects": [
       {
-        "name": "Morph",
-        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "name": "ZIRCUIT",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000005",
         "address": "0x0000000000000000000000000000000000000000",
-        "src": "/symbol/Morph.png"
+        "img": "/symbol/Zircuit.jpeg"
       }
     ]
   },
@@ -114,19 +114,19 @@
     "symbol": "ETH",
     "decimals": 18,
     "blockExplorerUrl": ["https://eth-sepolia.blockscout.com/"],
-    "flexirAddress": "0x0000000000000000000000000000000000000000",
-    "usdtAddress": "0x0000000000000000000000000000000000000000",
+    "flexirAddress": "0x0e83F377546C5c4c6b87BC39943568bB35D141B0",
+    "usdtAddress": "0xaeBC6F5E9F3079c0A57c44bE018A136c6CE45D86",
     "projects": [
       {
-        "name": "TEMP",
-        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "address": "0x0000000000000000000000000000000000000000",
+        "name": "Flexir",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+        "address": "0xFa1E20e9A6F8f6f7225FBa5D4962f3a3800718a3",
         "img": "/symbol/Ethereum.png"
       },
       {
-        "name": "TEMP2",
-        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000001",
-        "address": "0x0000000000000000000000000000000000000000",
+        "name": "TestToken",
+        "tokenId": "0x0000000000000000000000000000000000000000000000000000000000000007",
+        "address": "0xf7f0c8E9AB34885581373afD92FD0f185f20dB2E",
         "img": "/symbol/Ethereum.png"
       }
     ]
