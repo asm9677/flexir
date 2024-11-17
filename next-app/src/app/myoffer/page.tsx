@@ -15,9 +15,10 @@ import { contracts } from "@/contracts/addresses";
 import { getOfferEvents, getOrderEvents } from "@/features/events";
 import MyOffersTab from "@/components/myoffer/MyOffersTab";
 import MyOrdersTab from "@/components/myoffer/MyOrdersTab";
+import networks from "@/data/chains.json";
 
 export default function Page() {
-  const { signer } = useAccount();
+  const { signer, chainId } = useAccount();
 
   const [mainTabIndex, setMainTabIndex] = useState<number>(0); // 0: My Offers, 1: My Orders
   const [subTabIndex, setSubTabIndex] = useState<number>(0); // Sub-tabs for each main tab
@@ -54,6 +55,7 @@ export default function Page() {
 
     const pointMarketCtr = new Contract(
       contracts.flexir.address,
+      // networks.find((v) => chainId == v.chainId)?.flexirAddress,
       contracts.flexir.abi,
       signer
     );

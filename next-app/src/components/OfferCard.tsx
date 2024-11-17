@@ -2,6 +2,7 @@ import { Avatar, Box, Flex, Tag } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { formatBigInt, formatFixed } from "../features/formatters";
+import { useAccount } from "@/context/AccountProvider";
 
 interface OfferData {
   offerId: number;
@@ -24,6 +25,7 @@ interface OfferProps {
 
 const OfferCard: FC<OfferProps> = ({ offer }) => {
   const router = useRouter();
+  const { curChain } = useAccount();
 
   return (
     <Box
@@ -43,9 +45,9 @@ const OfferCard: FC<OfferProps> = ({ offer }) => {
           <Avatar
             boxSize="20px"
             name={`${offer.symbol} Logo`}
-            src={`/images/Grass.png`}
+            src={`${curChain?.projects[0].img}`}
           />{" "}
-          {offer.name}{" "}
+          {curChain?.projects[0].name}{" "}
           <Tag colorScheme="cyan" py={1} px={2} fontSize={"xs"}>
             No. {offer.offerId.toString()}
           </Tag>

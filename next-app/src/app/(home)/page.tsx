@@ -21,6 +21,7 @@ import { Contract, ethers } from "ethers";
 import { FaArrowDownWideShort, FaArrowUpShortWide } from "react-icons/fa6";
 import { useContract } from "@/hooks/useContract";
 import OfferCard from "@/components/OfferCard";
+import { useRouter } from "next/navigation";
 
 interface NewOffer {
   offerId: number;
@@ -67,7 +68,6 @@ export default function Page() {
   const { flexirContract } = useContract();
   const searchParams = useSearchParams();
 
-  const [contract, setContract] = useState<Contract | null>(null);
   const [selected, setSelected] = useState(1);
   const [selectedToken, setSelectedToken] = useState("ALL");
   const [cardData, setCardData] = useState<(NewOffer | NewResaleOffer)[]>([]);
@@ -107,10 +107,15 @@ export default function Page() {
   };
 
   const getOffers = async () => {
-    const offerEvents = await contract!.queryFilter("NewOffer", 0, "latest");
-    const resaleOfferEvents = await contract!.queryFilter(
+    const fromBlock = (await provider!.getBlockNumber()) - 4500;
+    const offerEvents = await flexirContract.queryFilter(
+      "NewOffer",
+      fromBlock,
+      "latest"
+    );
+    const resaleOfferEvents = await flexirContract.queryFilter(
       "NewResaleOffer",
-      0,
+      fromBlock,
       "latest"
     );
 
@@ -149,14 +154,13 @@ export default function Page() {
   };
 
   useEffect(() => {
-    if (contract !== null || !provider) return;
-    setContract(flexirContract);
-  }, [provider]);
-
-  useEffect(() => {
-    if (contract === null) return;
+    if (
+      flexirContract.target === "0x0000000000000000000000000000000000000000" ||
+      !provider
+    )
+      return;
     getOffers();
-  }, [contract]);
+  }, [flexirContract]);
 
   useEffect(() => {
     if (cardData.length === 0) return;
@@ -166,8 +170,8 @@ export default function Page() {
           const offerInfo = await flexirContract.getOffer(offer.offerId);
           return {
             offerId: offer.offerId,
-            symbol: "Grass",
-            name: "GRASS",
+            symbol: "Flexir",
+            name: "FLEXIR",
             amount: ethers.formatUnits(offer.amount, 6),
             price: Number(offer.value) / 10 ** 6,
             point:
@@ -209,11 +213,13 @@ export default function Page() {
     const token = searchParams.get("token");
     if (token) {
       setSelectedToken(token);
+    } else {
+      window.location.href = "/?token=all";
     }
   }, [searchParams]);
 
   return (
-    <Flex color="white" flexDir="column" alignItems="center">
+    <Flex color="white" flexDir="column" alignItems="center" minH="70vh">
       <Flex
         justifyContent="space-between"
         w="100%"

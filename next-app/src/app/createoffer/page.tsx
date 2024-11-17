@@ -13,8 +13,9 @@ import {
   Text,
   useBoolean,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
-import { notify, tokens, coins } from "../../lib";
+import React, { useMemo, useRef, useState } from "react";
+import { notify } from "@/lib";
+import networks from "@/data/chains.json";
 import { FaAngleDown } from "react-icons/fa";
 import { useAccount } from "@/context/AccountProvider";
 import { useContract } from "@/hooks/useContract";
@@ -32,8 +33,8 @@ const CreateOffer = () => {
   const [forUsdt, setForUsdt] = useState<number | null>(null);
   const [isTokenOpen, setisTokenOpen] = useState<boolean>(false);
   const [isCoinOpen, setisCoinOpen] = useState<boolean>(false);
+  const [onChanged, setOnChanged] = useState<number>(0);
   const [selectedToken, setSelectedToken] = useState<number>(1);
-  const [selectedCoin, setSelectedCoin] = useState<number>(1);
   const [newOfferLoading, setNewOfferLoading] = useState<boolean>(false);
   const [isSameDomain, setIsSameDomain] = useState(false);
 
@@ -82,19 +83,26 @@ const CreateOffer = () => {
     setisTokenOpen(false);
   };
 
-  const handleCoinChange = (index: number) => {
-    setSelectedCoin(index);
-    setisCoinOpen(false);
+  const curTokens = useMemo(() => {
+    return networks.find((v) => chainId == v.chainId)?.projects;
+  }, [networks, chainId]);
+
+  const getTokenName = (id: number): string => {
+    switch (id) {
+      case 1:
+        return "token";
+      default:
+        return "all";
+    }
   };
 
-  const getTokenImage = (tokenId: number) => {
-    const token = tokens.find((token) => token.id === tokenId);
-    return token ? token.src : undefined;
+  const getTokenImage = (id: number): string | undefined => {
+    console.log(curTokens, "||", id);
+    return curTokens?.[id - 1]?.img;
   };
 
-  const getCoinImage = (coinId: number) => {
-    const coin = coins.find((coin) => coin.id === coinId);
-    return coin ? coin.src : undefined;
+  const handleCoinChange = () => {
+    setisCoinOpen(!isCoinOpen);
   };
 
   const pulse = keyframes`
@@ -319,8 +327,8 @@ const CreateOffer = () => {
                   <Flex>
                     <Avatar
                       boxSize="52px"
-                      name={`${selectedToken} Logo`}
-                      src={getTokenImage(selectedToken)}
+                      name={`${getTokenName(selectedToken)} Logo`}
+                      src={`${getTokenImage(selectedToken)}`}
                       w="40px"
                       h="40px"
                     />
@@ -345,16 +353,20 @@ const CreateOffer = () => {
                             zIndex={1}
                             my="-4px"
                           >
-                            {tokens.map((token) => (
+                            {curTokens?.map((el, i) => (
                               <Box
-                                key={token.id}
+                                key={i + 1}
                                 px={4}
                                 py={2}
                                 gap={2}
                                 _hover={{ bg: "gray.700", cursor: "pointer" }}
-                                onClick={() => handleTokenChange(token.id)}
+                                onClick={() => {
+                                  i + 1;
+                                  setOnChanged(onChanged + 1);
+                                  handleTokenChange(i + 1);
+                                }}
                               >
-                                {token.name}
+                                {el.name}
                               </Box>
                             ))}
                           </Box>
@@ -398,8 +410,8 @@ const CreateOffer = () => {
                   <Flex>
                     <Avatar
                       boxSize="52px"
-                      name={`${selectedCoin} Logo`}
-                      src={getCoinImage(selectedCoin)}
+                      name={`USDT Logo`}
+                      src="images/logo_USDT.png"
                       w="40px"
                       h="40px"
                     />
@@ -410,13 +422,7 @@ const CreateOffer = () => {
                           onClick={() => setisCoinOpen((prev) => !prev)}
                           rightIcon={<FaAngleDown />}
                           variant="white"
-                        >
-                          {/* <Box display="flex" alignItems="center">
-                              <Text ml={4} color="white" h="fit-content">
-                                {selectedCoin}
-                              </Text>
-                            </Box> */}
-                        </Button>
+                        ></Button>
 
                         {isCoinOpen && (
                           <Box
@@ -431,17 +437,14 @@ const CreateOffer = () => {
                             zIndex={1}
                             my="-4px"
                           >
-                            {coins.map((coin) => (
-                              <Box
-                                key={coin.id}
-                                px={4}
-                                py={2}
-                                _hover={{ bg: "gray.700", cursor: "pointer" }}
-                                onClick={() => handleCoinChange(coin.id)}
-                              >
-                                {coin.name}
-                              </Box>
-                            ))}
+                            <Box
+                              px={4}
+                              py={2}
+                              _hover={{ bg: "gray.700", cursor: "pointer" }}
+                              onClick={() => handleCoinChange()}
+                            >
+                              USDT
+                            </Box>
                           </Box>
                         )}
                       </Box>
@@ -563,10 +566,11 @@ const CreateOffer = () => {
                     })}
                     &nbsp;
                     <Image
-                      src="/images/logo_token.png"
+                      src={`${getTokenImage(selectedToken)}`}
                       alt="token"
                       width="24px"
                       height="24px"
+                      rounded="full"
                     />
                     &nbsp;points
                   </Text>
@@ -619,7 +623,8 @@ const CreateOffer = () => {
                         forUsdt,
                         usdtContract,
                         setNewOfferLoading,
-                        router
+                        router,
+                        chainId
                       )
                     }
                     sx={{

@@ -90,7 +90,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
           );
 
           if (currentAllowance < parseUnits(tokenAmount, 24)) {
-            notify("Approving GRASS...", true);
+            notify("Approving FLEXIR...", true);
             const approveTx = await (
               tokenContract.connect(signer) as Contract
             ).approve(flexirContract.getAddress(), parseUnits(tokenAmount, 24));
@@ -139,10 +139,6 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
       }
     }
   };
-
-  useEffect(() => {
-    console.log(offer, offer.offerType);
-  }, [offer]);
 
   const onClickSettleCancelled = async () => {
     if (signer && flexirContract && offer) {
@@ -253,7 +249,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
         <Flex flexDir="column">
           <Flex alignItems={"center"} gap={4}>
             <Image
-              src="/images/grass.png"
+              src="/symbol/Ethereum.png"
               alt="logo"
               w="60px"
               h="60px"
@@ -261,7 +257,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             />
             <Flex flexDirection={"column"}>
               <Text fontWeight="bold" fontSize="18px" textColor="white">
-                GRASS
+                FLEXIR
               </Text>
               <Flex gap={1} alignItems="center">
                 <Link href="https://x.com/getgrass_io" target="_blank">
@@ -283,7 +279,9 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
         <Flex flexDir="column" mt={5} gap={3}>
           <OfferInputBox
             src={
-              offer?.offerType === 1n ? "/images/usdt.png" : "/images/grass.png"
+              offer?.offerType === 1n
+                ? "/images/usdt.png"
+                : "/symbol/Ethereum.png"
             }
             name={offer?.offerType === 1n ? "PRICE" : "POINTS"}
             value={offer?.offerType === 1n ? offer.value : offer.amount}
@@ -293,7 +291,9 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
           </Flex>
           <OfferInputBox
             src={
-              offer?.offerType === 1n ? "/images/grass.png" : "/images/usdt.png"
+              offer?.offerType === 1n
+                ? "/symbol/Ethereum.png"
+                : "/images/usdt.png"
             }
             name={offer?.offerType === 1n ? "POINTS" : "PRICE"}
             value={offer?.offerType === 1n ? offer.amount : offer.value}
@@ -446,7 +446,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             ) : // 본인의 오퍼일 경우 (첫 거래 체결 후)
             order?.seller === signer?.address ? (
               <Button
-                colorScheme="green.200"
+                colorScheme="green"
                 w="full"
                 onClick={onOpen}
                 isDisabled={isSelling}
@@ -498,7 +498,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             >
               {offer?.offerType == 1n ? "BUYING" : "SELLING"}
             </Box>{" "}
-            {formatUnits(offer.amount, 6)} GRASS{" "}
+            {formatUnits(offer.amount, 6)} FLEXIR{" "}
             <Box as="span" color="#606064">
               for
             </Box>{" "}
@@ -508,7 +508,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             <Box as="span" color="#606064">
               You will automatically receive
             </Box>{" "}
-            GRASS{" "}
+            FLEXIR{" "}
             <Box as="span" color="#606064">
               token after settlement.
             </Box>

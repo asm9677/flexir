@@ -4,6 +4,28 @@ import { createContext, ReactNode, useContext } from "react";
 import { useAccountProvider } from "@/hooks/useAccountProvider";
 import { BrowserProvider, JsonRpcSigner } from "ethers";
 
+type Project = {
+  name: string;
+  tokenId: string;
+  address: string;
+  img: string;
+};
+
+type Network = {
+  src: string;
+  balance: string;
+  chainId: number;
+  network: string;
+  rpc: string[];
+  name: string;
+  symbol: string;
+  decimals: number;
+  blockExplorerUrl: string[];
+  flexirAddress: string;
+  usdtAddress: string;
+  projects: Project[];
+};
+
 interface AccountContextProps {
   provider: BrowserProvider | null;
   signer: JsonRpcSigner | null;
@@ -12,6 +34,7 @@ interface AccountContextProps {
   disconnectWallet: () => void;
   connectProvider: () => void;
   chainId: number;
+  curChain: Network | undefined;
 }
 
 const AccountContext = createContext<AccountContextProps | undefined>(
@@ -26,6 +49,7 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
     disconnectWallet,
     connectProvider,
     chainId,
+    curChain,
   } = useAccountProvider();
   return (
     <AccountContext.Provider
@@ -37,6 +61,7 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
         disconnectWallet,
         connectProvider,
         chainId,
+        curChain,
       }}
     >
       {children}
