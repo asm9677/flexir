@@ -92,7 +92,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
       <Flex flexDir="column" w="full" m={4} justifyContent="space-between">
         <Flex w="full" justifyContent="space-between">
           <Text color="gray.300">Offer</Text>
-          <Text color="white">{formatUnits(offer.amount, 6)} GRASS</Text>
+          <Text color="white">{formatUnits(offer.amount, 6)} FLEXIR</Text>
         </Flex>
         <hr style={{ borderColor: "#234753" }} />
         <Flex w="full" justifyContent="space-between">
@@ -185,7 +185,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
         <Flex w="full" justifyContent="space-between">
           <Text color="gray.300">Token amount</Text>
           <Text color="white">
-            {tokenAmount == "" ? "TGE" : `${tokenAmount} GRASS`}
+            {tokenAmount == "" ? "TGE" : `${tokenAmount} FLEXIR`}
           </Text>
         </Flex>
         <hr style={{ borderColor: "#234753" }} />

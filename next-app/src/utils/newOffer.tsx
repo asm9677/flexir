@@ -1,8 +1,10 @@
 import { Contract, ethers } from "ethers";
 import { contracts } from "../contracts/addresses";
+import networks from "@/data/chains.json";
 import { notify } from "../lib";
 import flexirABI from "../contracts/abis/flexirABI.json";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useAccount } from "@/context/AccountProvider";
 
 export const onClickDeposit = async (
   flexirContract: Contract | null,
@@ -12,7 +14,8 @@ export const onClickDeposit = async (
   forUsdt: number | null,
   usdtContract: Contract,
   setNewOfferLoading: (loading: boolean) => void,
-  router: AppRouterInstance
+  router: AppRouterInstance,
+  chainId: number
 ) => {
   if (!flexirContract || !signer) return;
 
@@ -35,14 +38,17 @@ export const onClickDeposit = async (
         notify("Checking Allowance...", true);
         const currentAllowance = await usdtContract.allowance(
           signer.address,
-          contracts.flexir.address
+          networks.find((v) => chainId == v.chainId)?.flexirAddress
         );
 
         if (currentAllowance < offerValue) {
           notify("Approving USDT...", true);
           const approveTx = await (
             usdtContract.connect(signer) as Contract
-          ).approve(contracts.flexir.address, offerValue);
+          ).approve(
+            networks.find((v) => chainId == v.chainId)?.flexirAddress,
+            offerValue
+          );
           await approveTx.wait();
           notify("Approval completed !", true);
         } else {
@@ -67,9 +73,9 @@ export const onClickDeposit = async (
 
       notify("Transaction confirmed successfully !", true);
       setTimeout(() => {
-        console.log(txResult.logs)
-        console.log(txResult.logs[1])
-        console.log(iface.parseLog(txResult.logs[1]))
+        console.log(txResult.logs);
+        console.log(txResult.logs[1]);
+        console.log(iface.parseLog(txResult.logs[1]));
         router.push(
           `/offer/${Number(
             iface.parseLog(txResult.logs[1])?.args[0]

@@ -182,9 +182,9 @@ const MyOrderCard: FC<OrderProps> = ({
           <Avatar
             boxSize="20px"
             name={`grass Logo`}
-            src={`/images/Grass.png`}
+            src={`/symbol/Ethereum.png`}
           />{" "}
-          GRASS{" "}
+          FLEXIR{" "}
           <Tag colorScheme="cyan" py={1} px={2} fontSize={"xs"}>
             No. {orderData.orderId.toString()}
           </Tag>

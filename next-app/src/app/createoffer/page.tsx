@@ -570,6 +570,7 @@ const CreateOffer = () => {
                       alt="token"
                       width="24px"
                       height="24px"
+                      rounded="full"
                     />
                     &nbsp;points
                   </Text>
@@ -622,7 +623,8 @@ const CreateOffer = () => {
                         forUsdt,
                         usdtContract,
                         setNewOfferLoading,
-                        router
+                        router,
+                        chainId
                       )
                     }
                     sx={{

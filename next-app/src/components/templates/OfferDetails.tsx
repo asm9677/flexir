@@ -19,7 +19,7 @@ interface OfferPageProps {
 const OfferDetails: NextPage<OfferPageProps> = ({ offerId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { signer, provider } = useAccount();
+  const { signer, provider, curChain } = useAccount();
   const { flexirContract, usdtContract, tokenContract } = useContract();
   const [offer, setOffer] = useState<IOffer>();
   const [order, setOrder] = useState<IOrder | null>(null);

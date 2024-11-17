@@ -170,8 +170,8 @@ export default function Page() {
           const offerInfo = await flexirContract.getOffer(offer.offerId);
           return {
             offerId: offer.offerId,
-            symbol: "Grass",
-            name: "GRASS",
+            symbol: "Flexir",
+            name: "FLEXIR",
             amount: ethers.formatUnits(offer.amount, 6),
             price: Number(offer.value) / 10 ** 6,
             point:
