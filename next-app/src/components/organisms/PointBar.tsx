@@ -18,7 +18,7 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import networks from "@/data/chains.json";
 
-const getBlockTimeInterval = (chainId: number) => {
+const getBlockTimeInterval = () => {
   return 180;
   // switch (chainId) {
   //   case 96:
@@ -114,8 +114,8 @@ export const PointBar: FC = () => {
   useEffect(() => {
     if (contract === null) return;
     console.log(contract);
-    getEventsByDay(1, getBlockTimeInterval(chainId));
-    getEventsByDay(7, getBlockTimeInterval(chainId));
+    getEventsByDay(1, getBlockTimeInterval());
+    getEventsByDay(7, getBlockTimeInterval());
   }, [contract]);
 
   return (
