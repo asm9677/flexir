@@ -272,7 +272,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay bg="rgba(0, 0, 0, 0.5)" />
       <ModalContent bg="#0d1117" minH="600px" minW="900px">
-        <ModalHeader>Resell Order</ModalHeader>
+        <ModalHeader pb="1">Resell Order</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Flex w="full" flexDir="row" justifyContent="space-between">
@@ -280,8 +280,8 @@ const ResaleModal: FC<ResaleModalProps> = ({
               <Flex
                 flexDir="column"
                 w="full"
-                border="1px solid"
-                borderColor="white"
+                border="2px solid gray"
+                borderColor={"green.700"}
                 p={8}
                 rounded="lg"
                 h="fit-content"
@@ -290,7 +290,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                   <Flex gap={4}>
                     <Flex flexDir="column">
                       <Image
-                        src="/symbol/Morph.png"
+                        src="/symbol/Ethereum.png"
                         alt="logo"
                         w="60px"
                         h="60px"
@@ -299,7 +299,7 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     </Flex>
                     <Flex flexDir="column" justifyContent="center">
                       <Text fontWeight="bold" fontSize="20px" color="white">
-                        MORPH
+                        FLEXIR
                       </Text>
                       <Flex gap={1} alignItems="center">
                         <FaTelegramPlane color="white" />
@@ -323,29 +323,31 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     >
                       <Text display="flex">
                         <Text color="green.500">
-                          {isBuyer ? "Buying " : "Selling "}
+                          {isBuyer ? "Buying " : "Selling "}&nbsp;
                         </Text>
                         <Text color="white">
-                          {Number(orderData.amount) / WEI6}
+                          {Number(orderData.amount) / WEI6}&nbsp;
                         </Text>
                         <Image
-                          src="/symbol/Morph.png"
+                          src="/symbol/Ethereum.png"
                           alt="usdt"
                           width="24px"
                           height="24px"
+                          rounded="full"
                         />
-                        points
+                        &nbsp;points&nbsp;
                       </Text>
                       <Text display="flex">
-                        <Text color="green.500">COLLATERAL</Text>
+                        <Text color="green.500">COLLATERAL&nbsp;</Text>
                         <Text color="white">
-                          {(Number(orderData.value) * 2) / USDT_DECIMAL}
+                          {(Number(orderData.value) * 2) / USDT_DECIMAL}&nbsp;
                         </Text>
                         <Image
                           src="/images/Usdt.png"
                           alt="usdt"
                           width="24px"
                           height="24px"
+                          rounded="full"
                         />
                       </Text>
                     </Flex>
@@ -356,8 +358,8 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     w="full"
                     alignItems="center"
                     justifyContent="space-between"
-                    border="1px solid"
-                    borderColor="white"
+                    border="1px solid gray"
+                    borderColor={"green.700"}
                     px={4}
                     py={6}
                     rounded="lg"
@@ -387,11 +389,11 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     </Flex>
                     <Box>
                       <Image
-                        src="/images/Morph.png"
-                        alt="Morph"
+                        src="/symbol/Ethereum.png"
+                        alt="grass"
                         rounded="full"
-                        w="44px"
-                        h="44px"
+                        w="40px"
+                        h="40px"
                       />
                     </Box>
                   </Flex>
@@ -401,8 +403,8 @@ const ResaleModal: FC<ResaleModalProps> = ({
                     w="full"
                     alignItems="center"
                     justifyContent="space-between"
-                    border="1px solid"
-                    borderColor="white"
+                    border="1px solid gray"
+                    borderColor={"green.700"}
                     px={4}
                     py={6}
                     rounded="lg"
@@ -455,9 +457,23 @@ const ResaleModal: FC<ResaleModalProps> = ({
                 </Flex>
               </Flex>
             </Flex>
-            <Flex w="36%" border="1px solid" borderColor="white" rounded="lg">
+            <Flex
+              w="36%"
+              border="2px solid gray"
+              borderColor={"green.700"}
+              rounded="lg"
+            >
               <Flex w="full" m={4}>
-                <Text color="white">Description</Text>
+                <Text color="white">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </Text>
               </Flex>
             </Flex>
           </Flex>

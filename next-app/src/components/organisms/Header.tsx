@@ -14,7 +14,7 @@ import Image from "next/image";
 const navLinks = [
   {
     name: <Text textColor={"white"}>Points Market</Text>,
-    path: "/?token=all",
+    path: "?token=all",
     icon: <PiLetterCirclePBold size={24} />,
   },
   {

@@ -48,12 +48,13 @@ const OfferInfo: FC<OfferInfoProps> = ({
   setSettleStatus,
   collateral,
 }) => {
-  const { signer, provider } = useAccount();
+  const { signer, curChain } = useAccount();
   const { flexirContract } = useContract();
   const [originOfferTx, setOriginOfferTx] = useState<string>("");
 
   useEffect(() => {
     fetchOriginOffer();
+    console.log(curChain);
   }, [offer]);
 
   const fetchOriginOffer = async () => {
@@ -130,7 +131,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
               {offer.offeredBy.slice(-3)}
             </Text>
             <Link
-              href={`https://sepolia.etherscan.io/address/${offer.offeredBy}`}
+              href={`${curChain?.blockExplorerUrl}/address/${offer.offeredBy}`}
               target="_blank"
             >
               <GoLinkExternal color="white" />
@@ -145,7 +146,7 @@ const OfferInfo: FC<OfferInfoProps> = ({
               {originOfferTx?.slice(0, 5)}...{originOfferTx?.slice(-3)}
             </Text>
             <Link
-              href={`https://sepolia.etherscan.io/tx/${originOfferTx}`}
+              href={`${curChain?.blockExplorerUrl}/tx/${originOfferTx}`}
               target="_blank"
             >
               <GoLinkExternal color="white" />

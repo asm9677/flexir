@@ -3,7 +3,7 @@ import { useContract } from "@/hooks/useContract";
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { formatUnits, parseUnits } from "ethers";
 import Link from "next/link";
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { FaDiscord, FaHome, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { notify } from "../../lib";
@@ -143,10 +143,6 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
       }
     }
   };
-
-  useEffect(() => {
-    console.log(offer, offer.offerType);
-  }, [offer]);
 
   const onClickSettleCancelled = async () => {
     if (signer && flexirContract && offer) {
@@ -450,7 +446,7 @@ const OfferTradeWidget: FC<NavButtonProps> = ({
             ) : // 본인의 오퍼일 경우 (첫 거래 체결 후)
             order?.seller === signer?.address ? (
               <Button
-                colorScheme="green.200"
+                colorScheme="green"
                 w="full"
                 onClick={onOpen}
                 isDisabled={isSelling}

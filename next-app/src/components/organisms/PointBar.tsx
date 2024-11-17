@@ -18,13 +18,22 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import networks from "@/data/chains.json";
 
-const getBlockTimeInterval = (chainId: number) => {
-  switch (chainId) {
-    case 111555111:
-      return 12;
-    default:
-      return 1;
-  }
+const getBlockTimeInterval = () => {
+  return 180;
+  // switch (chainId) {
+  //   case 96:
+  //     return 5;
+  //   case 5000:
+  //   case 48900:
+  //   case 59144:
+  //     return 2;
+  //   case 111555111:
+  //     return 12;
+  //   case 2810:
+  //     return 1;
+  //   default:
+  //     return 15;
+  // }
 };
 
 export const PointBar: FC = () => {
@@ -54,7 +63,8 @@ export const PointBar: FC = () => {
   const getEventsByDay = async (days: number, blockTimeInterval: number) => {
     const latestBlock = await provider!.getBlock("latest");
     const latestBlockNumber = latestBlock!.number;
-    const fromBlockNumber = latestBlockNumber - 4500;
+    const fromBlockNumber =
+      latestBlockNumber - (86400 / blockTimeInterval) * days;
 
     const newOfferEvents = await contract!.queryFilter(
       "NewOffer",
@@ -105,8 +115,8 @@ export const PointBar: FC = () => {
   useEffect(() => {
     if (contract === null) return;
     console.log(contract);
-    getEventsByDay(1, getBlockTimeInterval(chainId));
-    getEventsByDay(7, getBlockTimeInterval(chainId));
+    getEventsByDay(1, getBlockTimeInterval());
+    getEventsByDay(7, getBlockTimeInterval());
   }, [contract]);
 
   return (

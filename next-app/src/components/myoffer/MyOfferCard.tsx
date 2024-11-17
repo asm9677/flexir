@@ -1,4 +1,4 @@
-import { Avatar, Box, Flex, Tag, Text } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Tag } from "@chakra-ui/react";
 import { Contract } from "ethers";
 import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";

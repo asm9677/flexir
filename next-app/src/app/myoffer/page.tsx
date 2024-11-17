@@ -54,6 +54,7 @@ export default function Page() {
 
     const pointMarketCtr = new Contract(
       contracts.flexir.address,
+      // networks.find((v) => chainId == v.chainId)?.flexirAddress,
       contracts.flexir.abi,
       signer
     );

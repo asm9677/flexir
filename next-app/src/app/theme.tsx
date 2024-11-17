@@ -1,6 +1,7 @@
 /* theme.ts */
 import { extendTheme } from "@chakra-ui/react";
 import { GlobalStyleProps } from "@chakra-ui/theme-tools";
+
 const colors = {
   primary: "#007bff",
   dark: "#0d1117",
@@ -39,10 +40,7 @@ const colors = {
     700: "#508365",
   },
 };
-const config = {
-  initialColorMode: "dark",
-  useSystemColorMode: false,
-};
+
 import { mode } from "@chakra-ui/theme-tools";
 
 const styles = {
@@ -54,11 +52,14 @@ const styles = {
 };
 
 export const theme = extendTheme({
-  styles,
   colors,
+  styles,
   fonts: {
-    heading: "var(--font-nunito)",
-    body: "'var(--font-nunito)', 'var(--font-lato)'",
+    heading: "var(--font-nunito), sans-serif",
+    body: "var(--font-nunito), var(--font-lato), sans-serif",
   },
-  config,
+  config: {
+    initialColorMode: "dark", // Optional: Set the default color mode
+    useSystemColorMode: false,
+  },
 });
