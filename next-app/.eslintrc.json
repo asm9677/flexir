@@ -1,4 +1,9 @@
 {
   "extends": [], // 기본 설정 제거
-  "rules": {} // 모든 규칙 비활성화
+  "rules": {}, // 모든 규칙 비활성화
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  }
 }
