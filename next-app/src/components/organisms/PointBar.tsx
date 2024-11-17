@@ -114,8 +114,8 @@ export const PointBar: FC = () => {
   useEffect(() => {
     if (contract === null) return;
     console.log(contract);
-    getEventsByDay(1, getBlockTimeInterval(chainId));
-    getEventsByDay(7, getBlockTimeInterval(chainId));
+    getEventsByDay(1, getBlockTimeInterval());
+    getEventsByDay(7, getBlockTimeInterval());
   }, [contract]);
 
   return (
