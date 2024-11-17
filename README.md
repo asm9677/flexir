@@ -73,8 +73,11 @@ Once logged in, you can begin trading airdrop points on the platform. Explore th
  
 ## 9. Smart Contracts
 Flexir utilizes smart contracts to enable secure and efficient trading of airdrop points. You can view our smart contracts here:
-- Smart Contract Repository:
-- Deployed Contracts on Etherscan:
+- Smart Contract Repository
+  1) PointMarket : 0x74A4Cc436435005a03c169d1B99c3bb6356Ce13D
+  2) USDT : 0xAC86cfF21C87262d1F6ca30F54f4eBfe4f573d4F
+  3) Token : 0x3A683e7A3f8873a0389C5Aa8dDf830ebBe0DF311
+- Deployed Contracts on Etherscan: https://explorer.morphl2.io/
 
 ## 10. Feedback 
 Flexir deployed its DApp on the blockchain, ensuring high security and extensive network support. Through its smart contract capabilities, we were able to implement flexible and automated asset trading, providing users with a reliable trading environment.
