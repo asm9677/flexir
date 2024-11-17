@@ -10,18 +10,16 @@ import {
   MenuItem,
   MenuList,
   Switch,
-  Tag,
   Text,
 } from "@chakra-ui/react";
 import { FaAngleDown } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useAccount } from "@/context/AccountProvider";
-import { Contract, ethers } from "ethers";
+import { ethers } from "ethers";
 import { FaArrowDownWideShort, FaArrowUpShortWide } from "react-icons/fa6";
 import { useContract } from "@/hooks/useContract";
 import OfferCard from "@/components/OfferCard";
-import { useRouter } from "next/navigation";
 
 interface NewOffer {
   offerId: number;

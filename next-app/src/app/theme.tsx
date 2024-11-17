@@ -41,11 +41,6 @@ const colors = {
   },
 };
 
-const config = {
-  initialColorMode: "dark",
-  useSystemColorMode: false,
-};
-
 import { mode } from "@chakra-ui/theme-tools";
 
 const styles = {

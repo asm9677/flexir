@@ -36,7 +36,7 @@ const MyOrderCard: FC<OrderProps> = ({
   const userAddress = signer?.address.toLowerCase();
 
   const [orderData, setOrderData] = useState<any | null>(null);
-  const [isResale, setIsResale] = useState<boolean>(false);
+  const [_, setIsResale] = useState<boolean>(false);
   const [isBuyer, setIsBuyer] = useState<boolean>(false);
 
   const { isOpen, onOpen, onClose } = useDisclosure();

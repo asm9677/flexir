@@ -48,7 +48,6 @@ const ResaleModal: FC<ResaleModalProps> = ({
 
   const [pricePerPoint, setPricePerPoint] = useState<string | null>(null);
   const [forUsdt, setForUsdt] = useState<string | null>(null);
-  // const [offers, setOffers] = useState<Offer[]>([]);
   const [offerId, setOfferId] = useState<number>(0);
   const [isSelling, setIsSelling] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);

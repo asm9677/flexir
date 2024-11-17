@@ -18,7 +18,7 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import networks from "@/data/chains.json";
 
-const getBlockTimeInterval = (chainId: number) => {
+const getBlockTimeInterval = () => {
   return 180;
   // switch (chainId) {
   //   case 96:

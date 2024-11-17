@@ -36,7 +36,7 @@ const CreateOffer = () => {
   const [onChanged, setOnChanged] = useState<number>(0);
   const [selectedToken, setSelectedToken] = useState<number>(1);
   const [newOfferLoading, setNewOfferLoading] = useState<boolean>(false);
-  const [isSameDomain, setIsSameDomain] = useState(false);
+  const [isSameDomain, _] = useState(false);
 
   const { signer, chainId } = useAccount();
   const { flexirContract, usdtContract } = useContract();

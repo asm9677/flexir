@@ -4,7 +4,6 @@ import networks from "@/data/chains.json";
 import { notify } from "../lib";
 import flexirABI from "../contracts/abis/flexirABI.json";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useAccount } from "@/context/AccountProvider";
 
 export const onClickDeposit = async (
   flexirContract: Contract | null,

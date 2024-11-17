@@ -16,7 +16,6 @@ import {
 } from "@chakra-ui/react";
 import { Contract, ethers } from "ethers";
 import { JsonRpcSigner } from "ethers";
-import Link from "next/link";
 import { FaDiscord, FaHome, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 
 interface ResaleModalProps {

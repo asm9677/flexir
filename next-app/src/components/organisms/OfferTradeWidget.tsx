@@ -3,7 +3,7 @@ import { useContract } from "@/hooks/useContract";
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { formatUnits, parseUnits } from "ethers";
 import Link from "next/link";
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { FaDiscord, FaHome, FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { notify } from "../../lib";
